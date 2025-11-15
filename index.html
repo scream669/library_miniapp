@@ -101,21 +101,19 @@
 <body>
     <div id="app">
         <!-- начальный экран -->
-         <div>
-            <h1>
-                *лого:
-            </h1>
-         </div>
+            <h1>*лого:</h1>
         <div style="text-align: center; margin-bottom: 10px;">
             <img src="https://static.tildacdn.com/tild6166-3737-4633-b339-633337633036/4.png"
             alt="Логотип"
             style="max-width: 104px; height: auto;">
         </div>
         
+
+        <!-- разделы на старте -->
         <div id="menu">
             <h1>*разделы</h1>
             <button class="btn" onclick="openFolder('programming')">
-                <span style="font-size: 20px; margin-right: 10px;">📚</span>
+                <span style="font-size: 20px; margin-right: 10px;">>>></span>
                 Библиотека
             </button>
             <button class="btn" onclick="openFolder('music')">
@@ -162,25 +160,32 @@
         window.updateMenu = function() {
             console.log('Updating menu, current level:', window.currentLevel);
             
+            // разделы при возврате //
             if (window.currentLevel === 'main') {
                 document.getElementById('app').innerHTML = `
+                    <div>
+                    <h1>
+                        *лого:
+                    </h1>
+                    </div>
                     <div style="text-align: center; margin-bottom: 10px;">
                         <img src="https://static.tildacdn.com/tild6166-3737-4633-b339-633337633036/4.png"
                         alt="Логотип"
                         style="max-width: 104px; height: auto;">
                     </div>
                     <div id="menu">
+                        <h1>*разделы:</h1>
                         <button class="btn" onclick="openFolder('programming')">
-                            <span style="font-size: 20px; margin-right: 10px;"></span>
-                            Библиотека***
+                            <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                            Библиотека
                         </button>
                         <button class="btn" onclick="openFolder('music')">
-                            <span style="font-size: 20px; margin-right: 10px;"></span>
-                            Ядро***
+                            <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                            Ядро
                         </button>
                         <button class="btn" onclick="openFolder('books')">
-                            <span style="font-size: 20px; margin-right: 10px;"></span>
-                            Система*** (далее сюда перекопировать визуальный код)
+                            <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                            Система
                         </button>
                     </div>
                 `;
@@ -191,14 +196,14 @@
                         <span style="font-size: 18px; margin-right: 8px;">⬅</span>
                         Назад
                     </button>
-                    <h2>📚 Библиотека </h2>
-                    <button class="btn" onclick="showContent('Python - высокоуровневый язык программирования.\\n\\nОсновы:\\n• Простой синтаксис\\n• Динамическая типизация\\n• Большое сообщество\\n• Много библиотек')">
-                        <span style="font-size: 20px; margin-right: 10px;">🐍</span>
-                        Python основы
+                    <h2>Библиотека </h2>
+                    <button class="btn" onclick="showContent('*контент внутри подраздела 1')">
+                        <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                        *подраздел 1
                     </button>
-                    <button class="btn" onclick="showContent('JavaScript - язык для веб-разработки.\\n\\nПример:\\nconsole.log(\\\"Hello World\\\");\\n\\nИспользуется в:\\n• Frontend (React, Vue)\\n• Backend (Node.js)\\n• Мобильные приложения')">
-                        <span style="font-size: 20px; margin-right: 10px;">📜</span>
-                        JavaScript гайд
+                    <button class="btn" onclick="showContent('*контент внутри подраздела 2')">
+                        <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                        *подраздел 2
                     </button>
                 `;
             }
@@ -208,14 +213,14 @@
                         <span style="font-size: 18px; margin-right: 8px;">⬅</span>
                         Назад
                     </button>
-                    <h2>🎵 Музыка</h2>
-                    <button class="btn" onclick="showContent('Классическая музыка:\\n\\n• Бетховен - Лунная соната\\n• Моцарт - Турецкий марш\\n• Чайковский - Лебединое озеро\\n• Бах - Токката и фуга')">
-                        <span style="font-size: 20px; margin-right: 10px;">🎹</span>
-                        Классика
+                    <h2>Ядро</h2>
+                    <button class="btn" onclick="showContent('*контент внутри подраздела 1')">
+                        <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                        *подраздел 1
                     </button>
-                    <button class="btn" onclick="showContent('Рок-музыка:\\n\\n• Queen - Bohemian Rhapsody\\n• The Beatles - Yesterday\\n• Led Zeppelin - Stairway to Heaven\\n• Pink Floyd - Another Brick in the Wall')">
-                        <span style="font-size: 20px; margin-right: 10px;">🎸</span>
-                        Рок
+                    <button class="btn" onclick="showContent('*контент внутри подраздела 2')">
+                        <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                        *подраздел 2
                     </button>
                 `;
             }
@@ -225,14 +230,14 @@
                         <span style="font-size: 18px; margin-right: 8px;">⬅</span>
                         Назад
                     </button>
-                    <h2>📖 Книги</h2>
-                    <button class="btn" onclick="showContent('Русская классика:\\n\\n• Достоевский - Преступление и наказание\\n• Толстой - Война и мир\\n• Чехов - Рассказы\\n• Гоголь - Мертвые души')">
-                        <span style="font-size: 20px; margin-right: 10px;">🇷🇺</span>
-                        Русская классика
+                    <h2>Система</h2>
+                    <button class="btn" onclick="showContent('*контент внутри подраздела 1')">
+                        <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                        *подраздел 1
                     </button>
-                    <button class="btn" onclick="showContent('Зарубежная литература:\\n\\n• Оруэлл - 1984\\n• Хемингуэй - Старик и море\\n• Маркес - Сто лет одиночества\\n• Ремарк - Три товарища')">
-                        <span style="font-size: 20px; margin-right: 10px;">🌎</span>
-                        Зарубежная
+                    <button class="btn" onclick="showContent('*контент внутри подраздела 2')">
+                        <span style="font-size: 20px; margin-right: 10px;">>>></span>
+                        *подраздел 2
                     </button>
                 `;
             }
