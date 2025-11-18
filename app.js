@@ -3,7 +3,9 @@ const app = {
     currentScreen: 'goal-selection',
     selectedGoals: [],
     currentArticle: null,
-    
+    currentTheme: 'dark',
+    textSize: 'medium',
+
     goals: [
         { id: 'discipline', name: 'Прокачать дисциплину', emoji: '💪' },
         { id: 'business', name: 'Запустить бизнес', emoji: '🚀' },
@@ -17,327 +19,25 @@ const app = {
         { id: 'tech', name: 'Освоить технологии', emoji: '🤖' }
     ],
 
-    // Контент для всех целей
-    content: {
-        discipline: {
-            description: "Создать систему железной самодисциплины",
-            stages: [
-                {
-                    title: "ОСНОВА ДИСЦИПЛИНЫ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." }
-                    ]
-                },
-                {
-                    title: "ИНСТРУМЕНТЫ СИСТЕМЫ", 
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "УГЛУБЛЕНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." },
-                        { title: "Статья 5", content: "Содержание статьи 5..." }
-                    ]
-                }
-            ]
-        },
-        business: {
-            description: "Создать прибыльный бизнес с нуля",
-            stages: [
-                {
-                    title: "ФУНДАМЕНТ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРОДАЖИ И МОНЕТИЗАЦИЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "МАСШТАБИРОВАНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        },
-        purpose: {
-            description: "Обнаружить свое дело жизни",
-            stages: [
-                {
-                    title: "САМОИССЛЕДОВАНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРАКТИЧЕСКОЕ ПРИМЕНЕНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ИНТЕГРАЦИЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." }
-                    ]
-                }
-            ]
-        },
-        energy: {
-            description: "Восстановить энергетические ресурсы",
-            stages: [
-                {
-                    title: "ДИАГНОСТИКА",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ВОССТАНОВЛЕНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПОДДЕРЖАНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        },
-        mindset: {
-            description: "Развить критическое и системное мышление",
-            stages: [
-                {
-                    title: "ФИЛОСОФСКАЯ БАЗА",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "МЕНТАЛЬНЫЕ МОДЕЛИ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРАКТИКА",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        },
-        phone: {
-            description: "Вернуть контроль над вниманием и временем",
-            stages: [
-                {
-                    title: "ОСОЗНАНИЕ ПРОБЛЕМЫ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРАКТИЧЕСКИЕ ИНСТРУМЕНТЫ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ГЛУБОКАЯ ТРАНСФОРМАЦИЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        },
-        health: {
-            description: "Создать сильное и энергичное тело",
-            stages: [
-                {
-                    title: "ФУНДАМЕНТ ЗДОРОВЬЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ОПТИМИЗАЦИЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРОДВИНУТЫЙ УРОВЕНЬ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." }
-                    ]
-                }
-            ]
-        },
-        learning: {
-            description: "Освоить навык эффективного обучения",
-            stages: [
-                {
-                    title: "ОСНОВЫ ОБУЧЕНИЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "УГЛУБЛЕННЫЕ МЕТОДИКИ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "МАСТЕРСТВО",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        },
-        happiness: {
-            description: "Обрести внутреннюю гармонию и удовлетворенность",
-            stages: [
-                {
-                    title: "ПОИСК ИСТОЧНИКОВ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРАКТИКИ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ИНТЕГРАЦИЯ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        },
-        tech: {
-            description: "Эффективно использовать современные инструменты",
-            stages: [
-                {
-                    title: "ОСНОВЫ ЦИФРОВОЙ ГИГИЕНЫ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРАКТИЧЕСКОЕ ПРИМЕНЕНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                },
-                {
-                    title: "ПРОДВИНУТОЕ ИСПОЛЬЗОВАНИЕ",
-                    articles: [
-                        { title: "Статья 1", content: "Содержание статьи 1..." },
-                        { title: "Статья 2", content: "Содержание статьи 2..." },
-                        { title: "Статья 3", content: "Содержание статьи 3..." },
-                        { title: "Статья 4", content: "Содержание статьи 4..." }
-                    ]
-                }
-            ]
-        }
-    },
+    // Категории для базы знаний
+    categories: [
+        { id: 'navigation', name: 'Навигация по карте', emoji: '🗺️' },
+        { id: 'core', name: 'Ядро', emoji: '⭐️' },
+        { id: 'system', name: 'Система', emoji: '⚙️' },
+        { id: 'energy', name: 'Энергия', emoji: '⚡️' },
+        { id: 'business', name: 'Бизнес', emoji: '💼' },
+        { id: 'development', name: 'Развитие', emoji: '🌱' },
+        { id: 'health', name: 'Здоровье', emoji: '❤️' },
+        { id: 'reading', name: 'Чтение и знания', emoji: '📖' },
+        { id: 'happiness', name: 'Счастье и баланс', emoji: '😊' },
+        { id: 'motivation', name: 'Мотивация и послание', emoji: '🎯' },
+        { id: 'technology', name: 'Технологии', emoji: '🤖' },
+        { id: 'books', name: 'Книги, меняющие сознание', emoji: '📚' },
+        { id: 'library', name: 'Библиотека РАД', emoji: '🏛️' }
+    ],
+
+    // Контент будет загружаться из content-data.js
+    content: window.contentData || {},
     
     init() {
         // Загружаем сохраненные цели
@@ -349,6 +49,12 @@ const app = {
             this.showGoalSelection();
         }
         
+        const savedTheme = localStorage.getItem('appTheme') || 'dark';
+        const savedTextSize = localStorage.getItem('textSize') || 'medium';
+        this.currentTheme = savedTheme;
+        this.textSize = savedTextSize;
+        this.applySettings();
+
         // Инициализация Telegram Web App
         if (window.Telegram?.WebApp) {
             window.Telegram.WebApp.ready();
@@ -356,6 +62,31 @@ const app = {
         }
     },
     
+        // === ДОБАВИТЬ ЭТИ ФУНКЦИИ ===
+    applySettings() {
+        // Применяем тему
+        document.body.className = this.currentTheme + '-theme';
+        // Применяем размер текста
+        document.body.classList.add('text-size-' + this.textSize);
+    },
+    
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('appTheme', this.currentTheme);
+        this.applySettings();
+    },
+    
+    changeTextSize(size) {
+        this.textSize = size;
+        localStorage.setItem('textSize', size);
+        // Удаляем старые классы размера
+        document.body.classList.remove('text-size-small', 'text-size-medium', 'text-size-large');
+        // Добавляем новый
+        document.body.classList.add('text-size-' + size);
+    },
+    // === КОНЕЦ ДОБАВЛЕНИЯ ===
+
+
     showGoalSelection() {
         this.currentScreen = 'goal-selection';
         
@@ -423,9 +154,7 @@ const app = {
     },
     
     showRouteReady() {
-        // Сохраняем выбранные цели
         localStorage.setItem('selectedGoals', JSON.stringify(this.selectedGoals));
-        
         this.currentScreen = 'route-ready';
         
         const html = `
@@ -499,18 +228,18 @@ const app = {
             <div class="header text-left">
                 <h1>${goal.emoji} ${goal.name}</h1>
                 <div class="goal-description">
-                    Цель: ${goalContent.description}
+                    ${goalContent.description || 'Описание цели'}
                 </div>
             </div>
             
-            ${goalContent.stages.map((stage, index) => `
+            ${goalContent.stages ? goalContent.stages.map((stage, index) => `
                 <div class="stage-title">Этап ${index + 1}: ${stage.title}</div>
                 ${stage.articles.map(article => `
                     <a class="article-link" onclick="app.showArticle('${goalId}', ${index}, ${stage.articles.indexOf(article)})">
                         ${article.title}
                     </a>
                 `).join('')}
-            `).join('')}
+            `).join('') : '<div class="subtitle">Материалы скоро появятся</div>'}
         `;
         
         document.getElementById('app').innerHTML = html;
@@ -534,7 +263,7 @@ const app = {
             </div>
             
             <div class="article-content">
-                ${article.content}
+                ${article.content || 'Содержание статьи скоро появится...'}
             </div>
         `;
         
@@ -549,16 +278,92 @@ const app = {
             
             <div class="header">
                 <h1>Вся база знаний</h1>
-                <div class="subtitle">Все доступные материалы и цели</div>
+                <div class="subtitle">Все доступные материалы по категориям</div>
             </div>
             
-            ${this.goals.map(goal => `
-                <button class="goal-btn" onclick="app.showGoalDetail('${goal.id}')">
-                    <span class="emoji">${goal.emoji}</span>
-                    ${goal.name}
+        <div class="settings-section">
+                <div class="setting-item">
+                    <span>Тема:</span>
+                    <button class="theme-toggle ${this.currentTheme === 'dark' ? 'active' : ''}" 
+                            onclick="app.toggleTheme()">
+                        ${this.currentTheme === 'dark' ? '🌙 Тёмная' : '☀️ Светлая'}
+                    </button>
+                </div>
+                <div class="setting-item">
+                    <span>Размер текста:</span>
+                    <div class="text-size-controls">
+                        <button class="text-size-btn ${this.textSize === 'small' ? 'active' : ''}" 
+                                onclick="app.changeTextSize('small')">A</button>
+                        <button class="text-size-btn ${this.textSize === 'medium' ? 'active' : ''}" 
+                                onclick="app.changeTextSize('medium')">A</button>
+                        <button class="text-size-btn ${this.textSize === 'large' ? 'active' : ''}" 
+                                onclick="app.changeTextSize('large')">A</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="category-btn" onclick="app.showPersonalRoute()">
+                <span class="emoji">📋</span>
+                Ваша подборка
+                <span class="arrow">›</span>
+            </button>
+            
+            ${this.categories.map(category => `
+                <button class="category-btn" onclick="app.showCategory('${category.id}')">
+                    <span class="emoji">${category.emoji}</span>
+                    ${category.name}
                     <span class="arrow">›</span>
                 </button>
             `).join('')}
+        `;
+        
+        document.getElementById('app').innerHTML = html;
+    },
+    
+    showCategory(categoryId) {
+        const category = this.categories.find(c => c.id === categoryId);
+        const categoryContent = this.content[categoryId];
+        
+        const html = `
+            <button class="back-btn" onclick="app.showFullLibrary()">
+                ← Назад к базе знаний
+            </button>
+            
+            <div class="header text-left">
+                <h1>${category.emoji} ${category.name}</h1>
+                <div class="goal-description">
+                    ${categoryContent?.description || 'Материалы этой категории'}
+                </div>
+            </div>
+            
+            ${categoryContent?.articles ? categoryContent.articles.map(article => `
+                <a class="article-link" onclick="app.showCategoryArticle('${categoryId}', '${article.id}')">
+                    ${article.title}
+                </a>
+            `).join('') : '<div class="subtitle">Материалы скоро появятся</div>'}
+        `;
+        
+        document.getElementById('app').innerHTML = html;
+    },
+    
+    showCategoryArticle(categoryId, articleId) {
+        const category = this.categories.find(c => c.id === categoryId);
+        const categoryContent = this.content[categoryId];
+        const article = categoryContent?.articles?.find(a => a.id === articleId);
+        
+        const html = `
+            <button class="back-btn" onclick="app.showCategory('${categoryId}')">
+                ← Назад к категории
+            </button>
+            
+            <div class="header text-left">
+                <h1>${article?.title || 'Статья'}</h1>
+                <div class="subtitle text-left">${category.emoji} ${category.name}</div>
+            </div>
+            
+            <div class="article-content">
+                ${article?.content || 'Содержание статьи скоро появится...'}
+            </div>
         `;
         
         document.getElementById('app').innerHTML = html;
@@ -569,4 +374,3 @@ const app = {
 document.addEventListener('DOMContentLoaded', function() {
     app.init();
 });
-
