@@ -354,10 +354,35 @@ const app = {
         document.getElementById('app').innerHTML = html;
     },
     
-    showCategory(categoryId) {
+            showCategory(categoryId) {
         const category = this.categories.find(c => c.id === categoryId);
         const categoryContent = this.content[categoryId];
         
+        if (!categoryContent || !categoryContent.subsections) {
+            // Резервный вариант для старых структур
+            const html = `
+                <button class="back-btn" onclick="app.showFullLibrary()">
+                    ← Назад к базе знаний
+                </button>
+                
+                <div class="header text-left">
+                    <h1>${category.emoji} ${category.name}</h1>
+                    <div class="goal-description">
+                        ${categoryContent?.description || 'Материалы категории'}
+                    </div>
+                </div>
+                
+                ${categoryContent?.articles ? categoryContent.articles.map(article => `
+                    <a class="article-link" onclick="app.showArticleContent('${article.id}')">
+                        ${article.title}
+                    </a>
+                `).join('') : '<div class="subtitle">Материалы скоро появятся</div>'}
+            `;
+            document.getElementById('app').innerHTML = html;
+            return;
+        }
+        
+        // Новая структура с подразделами
         const html = `
             <button class="back-btn" onclick="app.showFullLibrary()">
                 ← Назад к базе знаний
@@ -366,15 +391,138 @@ const app = {
             <div class="header text-left">
                 <h1>${category.emoji} ${category.name}</h1>
                 <div class="goal-description">
-                    ${categoryContent?.description || 'Материалы этой категории'}
+                    ${categoryContent.description}
                 </div>
             </div>
             
-            ${categoryContent?.articles ? categoryContent.articles.map(article => `
-                <a class="article-link" onclick="app.showCategoryArticle('${categoryId}', '${article.id}')">
+            ${categoryContent.subsections.map((subsection, index) => `
+                <button class="goal-btn" onclick="app.showSubsection('${categoryId}', ${index})">
+                    <span class="emoji">📁</span>
+                    ${subsection.title}
+                    <span class="arrow">›</span>
+                </button>
+            `).join('')}
+        `;
+        
+        document.getElementById('app').innerHTML = html;
+    },
+    
+        showSubsection(categoryId, subsectionIndex) {
+        console.log('showSubsection работает!', categoryId, subsectionIndex);
+        
+        const category = this.categories.find(c => c.id === categoryId);
+        const categoryContent = this.content[categoryId];
+        
+        if (!categoryContent || !categoryContent.subsections) {
+            this.showCategory(categoryId);
+            return;
+        }
+        
+        const subsection = categoryContent.subsections[subsectionIndex];
+        
+        const html = `
+            <button class="back-btn" onclick="app.showCategory('${categoryId}')">
+                ← Назад к ${category.name}
+            </button>
+            
+            <div class="header text-left">
+                <h1>${subsection.title}</h1>
+                <div class="goal-description">
+                    ${categoryContent.description}
+                </div>
+            </div>
+            
+            ${subsection.topics.map((topic, topicIndex) => `
+                <button class="goal-btn" onclick="app.showTopic('${categoryId}', ${subsectionIndex}, ${topicIndex})">
+                    <span class="emoji">📄</span>
+                    ${topic.title}
+                    <span class="arrow">›</span>
+                </button>
+            `).join('')}
+        `;
+        
+        document.getElementById('app').innerHTML = html;
+    },
+
+        showTopic(categoryId, subsectionIndex, topicIndex) {
+        console.log('showTopic работает!', categoryId, subsectionIndex, topicIndex);
+        
+        const category = this.categories.find(c => c.id === categoryId);
+        const categoryContent = this.content[categoryId];
+        
+        if (!categoryContent || !categoryContent.subsections) {
+            this.showCategory(categoryId);
+            return;
+        }
+        
+        const subsection = categoryContent.subsections[subsectionIndex];
+        const topic = subsection.topics[topicIndex];
+        
+        const html = `
+            <button class="back-btn" onclick="app.showSubsection('${categoryId}', ${subsectionIndex})">
+                ← Назад к ${subsection.title}
+            </button>
+            
+            <div class="header text-left">
+                <h1>${topic.title}</h1>
+                <div class="goal-description">
+                    Материалы по теме
+                </div>
+            </div>
+            
+            ${topic.articles.map(article => `
+                <a class="article-link" onclick="app.showArticleContent('${article.id}')">
                     ${article.title}
                 </a>
-            `).join('') : '<div class="subtitle">Материалы скоро появятся</div>'}
+            `).join('')}
+        `;
+        
+        document.getElementById('app').innerHTML = html;
+    },
+
+        showArticleContent(articleId) {
+        console.log('showArticleContent работает!', articleId);
+        
+        // Универсальный поиск статьи
+        let foundArticle = null;
+        let articleCategory = null;
+        
+        for (const [categoryId, categoryContent] of Object.entries(this.content)) {
+            if (categoryContent.subsections) {
+                for (const subsection of categoryContent.subsections) {
+                    for (const topic of subsection.topics) {
+                        const article = topic.articles.find(a => a.id === articleId);
+                        if (article) {
+                            foundArticle = article;
+                            articleCategory = this.categories.find(c => c.id === categoryId);
+                            break;
+                        }
+                    }
+                    if (foundArticle) break;
+                }
+            }
+            if (foundArticle) break;
+        }
+        
+        if (!foundArticle) {
+            this.showFullLibrary();
+            return;
+        }
+        
+        
+        const html = `
+            <button class="back-btn" onclick="app.showFullLibrary()">
+                ← Назад к базе знаний
+            </button>
+            
+            <div class="header text-left">
+                <h1>${foundArticle.title}</h1>
+                <div class="subtitle text-left">${articleCategory.emoji} ${articleCategory.name}</div>
+            </div>
+            
+            <div class="article-content">
+                ${foundArticle.content}
+            </div>
         `;
         
         document.getElementById('app').innerHTML = html;
@@ -403,6 +551,7 @@ const app = {
         document.getElementById('app').innerHTML = html;
     }
 };
+
 
 // Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', function() {
