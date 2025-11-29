@@ -5,6 +5,38 @@ const app = {
     currentArticle: null,
     currentTheme: 'dark',
     textSize: 'medium',
+    
+    // === НАВИГАЦИЯ (нормальный способ) ===
+    navigationHistory: [],
+    currentPage: null,
+
+    navigateTo(pageFunction, ...args) {
+        // Сохраняем текущую страницу в историю
+        if (this.currentPage) {
+            this.navigationHistory.push(this.currentPage);
+        }
+        
+        // Устанавливаем новую страницу
+        this.currentPage = { function: pageFunction, args: args };
+        
+        // Вызываем целевую функцию
+        this[pageFunction].apply(this, args);
+    },
+
+    navigateBack() {
+        if (this.navigationHistory.length > 0) {
+            const previousPage = this.navigationHistory.pop();
+            this.currentPage = previousPage;
+            this[previousPage.function].apply(this, previousPage.args);
+        } else {
+            // Если история пуста - на главную
+            this.navigateTo('showFullLibrary');
+        }
+    },
+
+    getBackButton() {
+        return `<button class="back-btn" onclick="app.navigateBack()">← Назад</button>`;
+    },
 
     goals: [
         { id: 'discipline', name: 'Прокачать дисциплину', emoji: '💪' },
@@ -40,6 +72,10 @@ const app = {
     content: window.contentData || {},
     
     init() {
+        // === ИНИЦИАЛИЗАЦИЯ НАВИГАЦИИ ===
+        this.navigationHistory = [];
+        this.currentPage = null;
+
         // Загружаем сохраненные цели
         const savedGoals = JSON.parse(localStorage.getItem('selectedGoals') || '[]');
         this.selectedGoals = savedGoals;
@@ -242,9 +278,7 @@ const app = {
         );
         
         const html = `
-            <button class="back-btn" onclick="app.showFullLibrary()">
-                ← Назад
-            </button>
+            ${this.getBackButton()}
             
             <div class="header">
                 <h1>Ваша подборка</h1>
@@ -252,7 +286,7 @@ const app = {
             </div>
             
             ${selectedGoalsData.map(goal => `
-                <button class="goal-btn" onclick="app.showGoalDetail('${goal.id}')">
+                <button class="goal-btn" onclick="app.navigateTo('showGoalDetail', '${goal.id}')">
                     <span class="emoji">${goal.emoji}</span>
                     ${goal.name}
                     <span class="arrow">›</span>
@@ -273,9 +307,7 @@ const app = {
         }
         
         const html = `
-            <button class="back-btn" onclick="app.showPersonalRoute()">
-                ← Назад к подборке
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${goal.emoji} ${goal.name}</h1>
@@ -287,7 +319,7 @@ const app = {
             ${goalContent.stages ? goalContent.stages.map((stage, index) => `
                 <div class="stage-title">Этап ${index + 1}: ${stage.title}</div>
                 ${stage.articles.map(article => `
-                    <a class="article-link" onclick="app.showArticle('${goalId}', ${index}, ${stage.articles.indexOf(article)})">
+                    <a class="article-link" onclick="app.navigateTo('showArticle', '${goalId}', ${index}, ${stage.articles.indexOf(article)})">
                         ${article.title}
                     </a>
                 `).join('')}
@@ -305,9 +337,7 @@ const app = {
         this.currentArticle = { goalId, stageIndex, articleIndex };
         
         const html = `
-            <button class="back-btn" onclick="app.showGoalDetail('${goalId}')">
-                ← Назад к этапам
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${article.title}</h1>
@@ -344,7 +374,7 @@ const app = {
             </button>
             
             ${this.categories.map(category => `
-                <button class="category-btn" onclick="app.showCategory('${category.id}')">
+                <button class="category-btn" onclick="app.navigateTo('showCategory', '${category.id}')">
                     <span class="emoji">${category.emoji}</span>
                     ${category.name}
                     <span class="arrow">›</span>
@@ -355,16 +385,14 @@ const app = {
         document.getElementById('app').innerHTML = html;
     },
     
-            showCategory(categoryId) {
+        showCategory(categoryId) {
         const category = this.categories.find(c => c.id === categoryId);
         const categoryContent = this.content[categoryId];
         
         if (!categoryContent || !categoryContent.subsections) {
             // Резервный вариант для старых структур
             const html = `
-                <button class="back-btn" onclick="app.showFullLibrary()">
-                    ← Назад к базе знаний
-                </button>
+                ${this.getBackButton()}
                 
                 <div class="header text-left">
                     <h1>${category.emoji} ${category.name}</h1>
@@ -385,9 +413,7 @@ const app = {
         
         // Новая структура с подразделами
         const html = `
-            <button class="back-btn" onclick="app.showFullLibrary()">
-                ← Назад к базе знаний
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${category.emoji} ${category.name}</h1>
@@ -397,7 +423,7 @@ const app = {
             </div>
             
             ${categoryContent.subsections.map((subsection, index) => `
-                <button class="goal-btn" onclick="app.showSubsection('${categoryId}', ${index})">
+                <button class="goal-btn" onclick="app.navigateTo('showSubsection', '${categoryId}', ${index})">
                     <span class="emoji">📁</span>
                     ${subsection.title}
                     <span class="arrow">›</span>
@@ -422,9 +448,7 @@ const app = {
         const subsection = categoryContent.subsections[subsectionIndex];
         
         const html = `
-            <button class="back-btn" onclick="app.showCategory('${categoryId}')">
-                ← Назад к ${category.name}
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${subsection.title}</h1>
@@ -434,7 +458,7 @@ const app = {
             </div>
             
             ${subsection.topics.map((topic, topicIndex) => `
-                <button class="goal-btn" onclick="app.showTopic('${categoryId}', ${subsectionIndex}, ${topicIndex})">
+                <button class="goal-btn" onclick="app.navigateTo('showTopic', '${categoryId}', ${subsectionIndex}, ${topicIndex})">
                     <span class="emoji">📄</span>
                     ${topic.title}
                     <span class="arrow">›</span>
@@ -459,10 +483,16 @@ const app = {
         const subsection = categoryContent.subsections[subsectionIndex];
         const topic = subsection.topics[topicIndex];
         
+        // === ДОБАВЬ ЭТУ ПРОВЕРКУ ===
+        // Если в теме только одна статья - открываем ее сразу
+        if (topic.articles && topic.articles.length === 1) {
+            this.showArticleContent(topic.articles[0].id);
+            return;
+        }
+        // === КОНЕЦ ДОБАВЛЕНИЯ ===
+        
         const html = `
-            <button class="back-btn" onclick="app.showSubsection('${categoryId}', ${subsectionIndex})">
-                ← Назад к ${subsection.title}
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${topic.title}</h1>
@@ -472,7 +502,7 @@ const app = {
             </div>
             
             ${topic.articles.map(article => `
-                <a class="article-link" onclick="app.showArticleContent('${article.id}')">
+                <a class="article-link" onclick="app.navigateTo('showArticleContent', '${article.id}')">
                     ${article.title}
                 </a>
             `).join('')}
@@ -512,9 +542,7 @@ const app = {
         
         
         const html = `
-            <button class="back-btn" onclick="app.showFullLibrary()">
-                ← Назад к базе знаний
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${foundArticle.title}</h1>
@@ -535,9 +563,7 @@ const app = {
         const article = categoryContent?.articles?.find(a => a.id === articleId);
         
         const html = `
-            <button class="back-btn" onclick="app.showCategory('${categoryId}')">
-                ← Назад к категории
-            </button>
+            ${this.getBackButton()}
             
             <div class="header text-left">
                 <h1>${article?.title || 'Статья'}</h1>
