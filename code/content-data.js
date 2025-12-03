@@ -167,40 +167,40 @@ const contentData = {
 </div>` },
                             { id: 'godmode_3', title: "Убийство режима бога", content: `<div style="margin: 25px 0;">
     <div style="text-align: center; margin-bottom: 25px;">
-        <a href="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_1.jpg?raw=true" 
+        <a href="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_1.jpg" 
            data-lightbox="godmode-photos" 
            data-title="Убийство режима бога - Фото 1">
-            <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_1.jpg?raw=true" 
+            <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_1.jpg" 
                  alt="Убийство режима бога - Фото 1" 
                  style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
         </a>
     </div>
     
     <div style="text-align: center; margin-bottom: 25px;">
-        <a href="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_2.jpg?raw=true" 
+        <a href="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_2.jpg" 
            data-lightbox="godmode-photos" 
            data-title="Убийство режима бога - Фото 2">
-            <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_2.jpg?raw=true" 
+            <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_2.jpg" 
                  alt="Убийство режима бога - Фото 2" 
                  style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
         </a>
     </div>
     
     <div style="text-align: center; margin-bottom: 25px;">
-        <a href="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_3.jpg?raw=true" 
+        <a href="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_3.jpg" 
            data-lightbox="godmode-photos" 
            data-title="Убийство режима бога - Фото 3">
-            <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_3.jpg?raw=true" 
+            <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_3.jpg" 
                  alt="Убийство режима бога - Фото 3" 
                  style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
         </a>
     </div>
     
     <div style="text-align: center;">
-        <a href="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_4.jpg?raw=true" 
+        <a href="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_4.jpg" 
            data-lightbox="godmode-photos" 
            data-title="Убийство режима бога - Фото 4">
-            <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_4.jpg?raw=true" 
+            <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_4.jpg" 
                  alt="Убийство режима бога - Фото 4" 
                  style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
         </a>
