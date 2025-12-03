@@ -5,9 +5,55 @@ const contentData = {
         subsections: []
     },
 
-    map: {
+    navigation: {
         description: "Навигация по карте", 
-        subsections: []
+        subsections: [
+            {
+                title: "Карта мышления РАД",
+                topics: [
+                    {
+                        title: "Открыть карту Miro",
+                        articles: [
+                            { 
+                                id: 'miro_map_1', 
+                                title: '📌 Навигационная карта РАД', 
+                                content: `<div class="article-source">
+        <strong>🗺️ Ссылка на карту:</strong> <a href="https://miro.com/app/board/uXjVJqKyXxw=/?share_link_id=434098608523" target="_blank">Открыть в Miro</a>
+    </div>
+
+    <div class="content-card">
+        <h3 style="margin-bottom: 20px;">Карта мышления РАД</h3>
+        
+        <div style="margin: 20px 0; padding: 15px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Полная визуализация всех концепций и их связей</strong></p>
+            <p><strong>Интерактивная карта для навигации по философии РАД</strong></p>
+        </div>
+        
+        <div style="margin: 25px 0; padding: 20px; text-align: center;">
+            <a href="https://miro.com/app/board/uXjVJqKyXxw=/?share_link_id=434098608523" 
+            target="_blank" 
+            style="display: inline-block; background: #007aff; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1em;">
+            🗺️ Открыть карту Miro
+            </a>
+        </div>
+        
+        <div style="margin: 20px 0; padding: 15px; border: 1px solid #e5e5ea; border-radius: 8px;">
+            <p style="margin-bottom: 10px;"><strong>Что на карте:</strong></p>
+            <ul>
+                <li>Все основные концепции (Режим Бога, Via Negativa и др.)</li>
+                <li>Связи между идеями</li>
+                <li>Визуальная структура знаний</li>
+                <li>Интерактивные элементы для изучения</li>
+            </ul>
+        </div>
+    </div>
+                                `
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
 
 // ==================== ОСНОВНЫЕ КАТЕГОРИИ КОНТЕНТА ====================
@@ -173,7 +219,21 @@ const contentData = {
         <p><strong>2. Утром же — медитация в берушах и полное отстранение от внешнего мира.</strong></p>
     </div>
 </div>` },
-                            { id: 'godmode_3', title: "Убийство режима бога", content: `` }
+                            { id: 'godmode_3', title: "Убийство режима бога", content: `<div class="article-image" style="margin: 20px 0; text-align: center;">
+    <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_1.jpg?raw=true" alt="Описание фото 1" style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+</div>
+
+<div class="article-image" style="margin: 20px 0; text-align: center;">
+    <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_2.jpg?raw=true" alt="Описание фото 2" style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+</div>
+
+<div class="article-image" style="margin: 20px 0; text-align: center;">
+    <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_3.jpg?raw=true" alt="Описание фото 3" style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+</div>
+
+<div class="article-image" style="margin: 20px 0; text-align: center;">
+    <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/killing_gm_4.jpg?raw=true" alt="Описание фото 4" style="width: 100%; max-width: 100%; height: auto; border-radius: 8px;">
+</div>` }
                         ]
                     },
                     {
@@ -1232,31 +1292,748 @@ const contentData = {
                     {
                         title: '"Ты мешок"',
                         articles: [
-                            { id: 'meshok_1', title: "Ты мешок", content: `` }
+                            { id: 'meshok_1', title: "Ты мешок", content: `<div class="article-source">
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+</div>
+
+<div class="content-card">
+    <h3 style="margin-bottom: 20px;">Ты - мешок...</h3>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Проснулся я недавно с такой мыслью в своей адрес.</strong></p>
+        <p style="margin-bottom: 10px;"><strong>Уау. Стоп стоп стоп.</strong></p>
+        <p><strong>Я же не позволяю самому себе говорить о себе плохо.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>Я давным-давно отучил себя от этого.</strong></p>
+        <p><strong>Потому что если ты не будешь своим же самым главным фанатом, кто будет?</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Что случилось</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Последние 1,5 года я пер как танк.</strong></p>
+        <p><strong>Не вспомню момента, когда ленился.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Разумеется, соблазны были, но я не поддавался.</strong></p>
+        <p><strong>А тут меня на 3 недели просто припечатало к дивану.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Я стал молотом Тора, которого нельзя поднять.</strong></p>
+        <p><strong>Причина? Приболел.</strong></p>
+        <p style="margin-top: 10px;"><strong>Лежать с температурой в тропиках так себе занятие.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Последствия</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Пролежал 3 дня, симптомов нет, температуры нет.</strong></p>
+        <p><strong>Но и энергии тоже нет.</strong></p>
+        <p style="margin-top: 10px;"><strong>Испарилась магия.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>В такие моменты понимаешь:</strong></p>
+        <p style="font-size: 1.1em;"><strong>Главный фундамент всего, на чем строится твоя жизнь - это здоровье.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #34C759;">
+        <p><strong>Здоровый хочет 1000 вещей, больной - только одну.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Осознание</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Когда я оборвал себя на фразе "ты мешок..." - я не услышал самого главного.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; background: rgba(52,199,89,0.1); border-radius: 8px; text-align: center;">
+        <p style="font-size: 1.2em;"><strong>Ты - мешок с гормонами.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>Ох, с вот этой фразой уже можно поработать, есть намёк.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Выход из ямы</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #34C759;">
+        <p style="margin-bottom: 10px;"><strong>Энергия не появится из неоткуда, нужно научиться культивировать энергию.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Я был слишком слаб чтобы работать, креативить, тренироваться как раньше.</strong></p>
+        <p><strong>Но:</strong></p>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <ul style="margin: 0 0 20px 0; padding-left: 20px;">
+            <li style="margin-bottom: 15px; padding-left: 5px;">
+                <strong>Могу пойти на прогулку</strong>
+            </li>
+            
+            <li style="margin-bottom: 15px; padding-left: 5px;">
+                <strong>Могу сделать растяжку на 10 минут</strong>
+            </li>
+            
+            <li style="margin-bottom: 5px; padding-left: 5px;">
+                <strong>Определенно точно могу</strong>
+            </li>
+        </ul>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p><strong>Нужно начинать с малого, раскручивать маховик энергии потихоньку, главное не пережать.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Процесс восстановления</h4>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px; color: #ff9500;">День 1:</h5>
+        
+        <ul style="margin: 0 0 20px 0; padding-left: 20px;">
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Собрался на прогулку</strong>
+            </li>
+            
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Хочется? Абсолютно нет</strong>
+            </li>
+            
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Но надо? Абсолютно точно да</strong>
+            </li>
+            
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Иду с подкастом</strong>
+            </li>
+            
+            <li style="margin-bottom: 5px; padding-left: 5px;">
+                <strong>Результат: начали прилетать интересные мысли</strong>
+            </li>
+        </ul>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px; color: #ff9500;">День 2:</h5>
+        
+        <ul style="margin: 0 0 20px 0; padding-left: 20px;">
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Небольшой рост энергии</strong>
+            </li>
+            
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Сауна вместо тренажерного зала</strong>
+            </li>
+            
+            <li style="margin-bottom: 5px; padding-left: 5px;">
+                <strong>10-15 минут легких упражнений</strong>
+            </li>
+        </ul>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px; color: #ff9500;">Неделя спустя:</h5>
+        
+        <ul style="margin: 0 0 20px 0; padding-left: 20px;">
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Уже не надо заставлять себя</strong>
+            </li>
+            
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Прогулки, тренировки по 20 минут, бег по 15</strong>
+            </li>
+            
+            <li style="margin-bottom: 10px; padding-left: 5px;">
+                <strong>Позитивное отношение вернулось</strong>
+            </li>
+            
+            <li style="margin-bottom: 5px; padding-left: 5px;">
+                <strong>Энергия еще не на пике, но положительный тренд</strong>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Вывод</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Время от времени мы все попадаем в яму.</strong></p>
+        <p><strong>И каким бы чемпионом ты не был, негативные мысли прилетают.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #ff9500;">
+        <p><strong>На таком фундаменте не построить ничего путного.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Поэтому:</strong></p>
+        
+        <ul style="margin: 0 0 20px 0; padding-left: 20px;">
+            <li style="margin-bottom: 15px; padding-left: 5px;">
+                <strong>Когда в яме - перестань закапывать себя глубже</strong>
+            </li>
+            
+            <li style="margin-bottom: 15px; padding-left: 5px;">
+                <strong>Не работай с мышлением - меняй физическое состояние</strong>
+            </li>
+            
+            <li style="margin-bottom: 5px; padding-left: 5px;">
+                <strong>Дальше мышление само встанет на позитивные рельсы</strong>
+            </li>
+        </ul>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="font-size: 1.2em;"><strong>Потому что ты не мешок...</strong></p>
+        <p style="font-size: 1.2em; margin-top: 10px;"><strong>Ты мешок с гормонами.</strong></p>
+    </div>
+</div>` }
                         ]
                     },
                     {
                         title: '"Ты не странный"',
                         articles: [
-                            { id: 'notweird_1', title: "Ты не странный", content: `` }
+                            { id: 'notweird_1', title: '"Ты не странный"', content: `<div class="article-source">
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+</div>
+
+<div class="content-card">
+    <h3 style="margin-bottom: 20px;">Ты не странный</h3>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 10px;"><strong>Все нормально с тобой.</strong></p>
+        <p style="margin-bottom: 10px;"><strong>Хотя нет –</strong></p>
+        <p><strong>Ты странный!</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Это не нормально!</strong></p>
+        <p style="font-size: 1.1em;"><strong>Это восхитительно!</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <div style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #34C759;">
+        <p><strong>Потому что ты не можешь надеяться на экстраординарные результаты, будучи просто нормальным.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>И экстраординарный – не значит, что ты волосы в синий цвет покрасишь или татуировки набьешь на все тело.</strong></p>
+        <p><strong>Нет.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Экстраординарный – значит, что ты идешь за своими интересами, за своими целями и мечтами, не смотря на дату в календаре.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Мой подход к праздникам</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Как вы могли заметить, я не поздравлял никого с Новым годом, не брал паузу, не снимал ногу с газа.</strong></p>
+        <p><strong>Скажу более того – кроме своих родных я никого не поздравляю даже с днем рождения.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>Но я и не праздную свой.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Я не горжусь новогодней попойкой.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Глубокое моральное удовлетворение мне приносит то, что 1 января я проснулся, размялся и сел за работу.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Ты не один такой</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Ха, и я ведь такой не один.</strong></p>
+        <p><strong>Посмотрите на скринкасте сколько парней и девчонок, так же как я, участвуют в челлендже Deep Work, и так же, как я, они сели за глубокую сосредоточенную работу 1 января.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Мы сделали это тихо, без шума, потому что настоящие результаты рождаются в тишине.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">История из прошлого</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>2 года назад, во время таких же новогодних праздников, будучи в долгах как в шелках, я также спокойненько сел –</strong></p>
+        <p><strong>и переписал всю структуру, всю идею, все воронку продаж своего агентства.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Эта структура работает и сейчас.</strong></p>
+        <p style="font-size: 1.1em;"><strong>И именно новая формация агентства (4-я по счету) принесла мне более 10 миллионов рублей.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px; text-align: center;">
+        <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>Ты странный!</strong></p>
+        <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>Это не нормально!</strong></p>
+        <p style="font-size: 1.1em;"><strong>Это восхитительно!</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="font-size: 1.2em;"><strong>И ты такой не один.</strong></p>
+    </div>
+</div>` }
                         ]
                     },
                     {
                         title: '"Особый тип человека"',
                         articles: [
-                            { id: 'specialtype_1', title: "Особый тип человека", content: `` }
+                            { id: 'specialtype_1', title: "Особый тип человека", content: `<div class="article-source">
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+</div>
+
+<div class="content-card">
+    <h3 style="margin-bottom: 20px;">Особый тип человека</h3>
+    
+    <div style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #34C759;">
+        <p style="margin-bottom: 10px;"><strong>Режим бога — это лучшая версия тебя.</strong></p>
+        <p><strong>Она сидит в тебе и ждет активации.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>И активировать эту версию можешь только ты сам.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Твоя история</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Скорее всего, ты тоже не родился с золотой ложкой во рту.</strong></p>
+        <p style="margin-bottom: 10px;"><strong>На тебя не упало с небес состояние.</strong></p>
+        <p><strong>Ты знаешь, каково это — смотреть меню в кафе справа налево: сначала цена, и только потом блюдо.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Тем интереснее будет квест.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Арка героя</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Потому что те, кто получил фантики и жемчужные бусы с рождения, — это самые несчастные люди.</strong></p>
+        <p><strong>У них нет арки героя.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>Они никогда не отправляли своему отцу сообщения:</strong></p>
+        <p><strong>«Пап, я лям заработал за прошлый месяц».</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>И это после того, как всего-то 18 месяцев назад я все потерял.</strong></p>
+        <p><strong>В ноль.</strong></p>
+        <p style="margin-top: 10px;"><strong>В чужой стране.</strong></p>
+        <p><strong>Без друзей, без фантиков и жемчужных бус.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Они никогда не поймут, каково это, когда ты идешь по лобби 5-звездочного отеля и тебе говорят:</strong></p>
+        <p style="margin-bottom: 10px;"><strong>«Радик, сэр, позвольте ваш джакет».</strong></p>
+        <p><strong>«Ах, джакет, разумеется».</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #34C759;">
+        <p style="margin-bottom: 10px;"><strong>Ты идешь, и внутри тебя 17-летний пацан фейерверки пускает.</strong></p>
+        <p><strong>Потому что этот пацан знает: 2 года назад ты в месяц тратил столько, сколько сейчас в день.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Смысл пути</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>И в этом есть смысл:</strong></p>
+        <p><strong>Посмотреть на себя в зеркало и вспомнить того 17-летнего пацана, который еще не потрепан жизнью, и честно сказать себе:</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; background: rgba(52,199,89,0.1); border-radius: 8px; text-align: center;">
+        <p style="font-size: 1.1em;"><strong>«Я горжусь тем, кем я стал, и это еще не финал».</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Стань труднее</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Легче то не станет.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Это тебе надо стать труднее.</strong></p>
+        <p style="font-size: 1.1em; margin-top: 10px;"><strong>Чтобы тебя с рогатки прибить нельзя было.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Когда плана нет</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Ты же знаешь, что случится так, что жизнь пойдет не по плану.</strong></p>
+        <p style="margin-bottom: 10px;"><strong>А может, уже идет не по плану?</strong></p>
+        <p><strong>А может, и плана даже нет?</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>В такие моменты на мотивацию ты не сможешь опереться, потому что ее просто не будет.</strong></p>
+        <p><strong>Единственное, что даст тебе опору, — это ты сам.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px; color: #007aff;">Особый тип человека</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Ты создаешь из себя особый тип человека, проходя через трудности.</strong></p>
+        <p><strong>А затем этот человек вытаскивает тебя из трудностей.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="font-size: 1.2em;"><strong>Потому что этот человек — тот, кем ты стал.</strong></p>
+    </div>
+</div>` }
                         ]
                     },
                     {
                         title: '"Интернет — умер?"',
                         articles: [
-                            { id: 'internetdead_1', title: "Интернет — умер?", content: `` }
+                            { id: 'internetdead_1', title: "Интернет — умер?", content: `<div class="article-source">
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+</div>
+
+<div class="content-card">
+    <h3 style="margin-bottom: 20px;">Интернет умер?</h3>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>«Ты доверяешь тому, что видишь в сети?»</strong></p>
+        <p><strong>Абсолютно точно нет.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Но что такое смерть интернета?</strong></p>
+        <p style="font-size: 1.1em; margin-top: 10px;"><strong>Это не исчезновение серверов.</strong></p>
+        <p style="font-size: 1.1em; margin-top: 10px;"><strong>Это смерть доверия.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Выбор между двумя реальностями</h4>
+    
+    <div style="margin-bottom: 25px;">
+        <div class="comparison" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="comparison-item negative">
+                <h4>Первая реальность</h4>
+                <p style="margin-top: 10px;"><strong>Уютный мирок</strong></p>
+                <p style="margin-top: 10px;">• Веришь всему, что показывают</p>
+                <p>• Полный комфорт</p>
+                <p style="margin-top: 15px;"><strong>Цифровая иллюзия</strong></p>
+            </div>
+            
+            <div class="comparison-item positive">
+                <h4>Вторая реальность</h4>
+                <p style="margin-top: 10px;"><strong>Сложный мир</strong></p>
+                <p style="margin-top: 10px;">• Каждый источник проверяется</p>
+                <p>• Ищешь сигнал в шуме</p>
+                <p style="margin-top: 15px;"><strong>Цифровая реальность</strong></p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #34C759;">
+        <p style="margin-bottom: 10px;"><strong>Естественно, выбирать надо второй вариант.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Но большинство выбирают первый – и живут в цифровой иллюзии, которую за них создали другие.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Я хочу жить в реальности.</strong></p>
+        <p style="font-size: 1.1em; margin-top: 10px;"><strong>Поэтому моя позиция – не верить, а проверять.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Фундамент доверия</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>Почему именно такая формулировка?</strong></p>
+        <p><strong>Потому что доверие – это фундамент.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Без него рушится все: любовь, дружба, бизнес.</strong></p>
+        <p style="margin-top: 10px;"><strong>Интернет – не исключение.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Многие говорят: «Главное – быть в теме, а правду не найти».</strong></p>
+        <p><strong>Это полнейший бред.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #34C759;">
+        <p><strong>Без поиска правды твое присутствие в сети – это просто потребление чужого нарратива.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Теория "мертвого интернета"</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Теория «мертвого интернета» – она уже здесь.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>И дело не только в ботах.</strong></p>
+        <p><strong>Большой Обман – это когда история переписана, новости – пропаганда, а за аватаром публичного человека может скрываться ИИ.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Если ты не можешь доверять тому, что происходит сейчас, как ты можешь верить тому, что было 100 лет назад?</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Мои принципы выживания в цифровом хаосе</h4>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">1. Фокус на сигнал</h5>
+        <div style="padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Если ты тонешь в шуме – ты проиграл.</strong></p>
+            <p><strong>Говори «Да!» только тому, что можно проверить.</strong></p>
+            <p style="margin-top: 10px;"><strong>Для всего остального – жесткое «нет».</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">2. Не играй в чужие игры</h5>
+        <div style="padding: 15px; background: rgba(52,199,89,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Тебя могут заставить играть в «потребление», а можно – в «создание».</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Игра в потребление – это бесконечный скроллинг и чужие мысли.</strong></p>
+            <p><strong>Игра в созидателя – это создание своих проектов и правильного окружения.</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">3. Строй свой остров</h5>
+        <div style="padding: 15px; background: rgba(88,86,214,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Не распыляйся – потеряешь суть.</strong></p>
+            <p><strong>Сначала построй один остров доверия – свой блог, канал или чат.</strong></p>
+            <p style="margin-top: 10px;"><strong>Заложи фундамент.</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">4. Будь аутентичным</h5>
+        <div style="padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Но твоя аутентичность должна быть с цифрами.</strong></p>
+            <p style="margin-bottom: 10px;"><strong>«Я сделал Х и получил Y».</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Это неоспоримо.</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Развивай навык документации своего опыта – он сделает тебя уникальным.</strong></p>
+            <p><strong>Подсказка: говори только о том, что пережил сам.</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <h5 style="margin-bottom: 15px;">5. Сложный процент доверия</h5>
+        <div style="padding: 15px; background: rgba(52,199,89,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Доверие имеет накопительный эффект.</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Если ты 5 лет честно делился опытом – тебе будут верить.</strong></p>
+            <p><strong>С аудиторией так же: чем дольше они тебя знают – тем проще донести мысль.</strong></p>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Итог</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Быть адекватным в сети – через личный опыт и действия строить свой остров доверия.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Это и есть концепт «цифрового суверенитета» в реальном времени.</strong></p>
+    </div>
+</div>` }
                         ]
                     },
                     {
                         title: "Есть два типа людей",
                         articles: [
-                            { id: 'twotypes_2', title: "Интернет — умер?", content: `` }
+                            { id: 'twotypes_2', title: "Интернет — умер?", content: `<div class="article-source">
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+</div>
+
+<div class="content-card">
+    <h3 style="margin-bottom: 20px;">Есть два типа людей</h3>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>«Ты окружаешь себя энерджайзерами или вампирами?»</strong></p>
+        <p><strong>Ответ определит твой путь.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(52,199,89,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>Но что такое тип человека?</strong></p>
+        <p style="font-size: 1.1em;"><strong>Это не характер, это его энергетический заряд.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Выбор между двумя полюсами</h4>
+    
+    <div style="margin-bottom: 25px;">
+        <div class="comparison" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="comparison-item positive">
+                <h4>Энерджайзер</h4>
+                <p style="margin-top: 10px;"><strong>Источник силы</strong></p>
+                <p style="margin-top: 10px;">• Провал – опыт</p>
+                <p>• Сложность – вызов</p>
+                <p>• Хочется conquistadorить мир</p>
+                <p style="margin-top: 15px;"><strong>Поднимает вверх</strong></p>
+            </div>
+            
+            <div class="comparison-item negative">
+                <h4>Вампир</h4>
+                <p style="margin-top: 10px;"><strong>Источник тяжести</strong></p>
+                <p style="margin-top: 10px;">• Провал – приговор</p>
+                <p>• Сложность – повод сдаться</p>
+                <p>• Хочется лечь на диван</p>
+                <p style="margin-top: 15px;"><strong>Тянет на дно</strong></p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #34C759;">
+        <p style="margin-bottom: 10px;"><strong>Естественно, выбирать надо первый вариант.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Но большинство по умолчанию окружены вторыми – и годами гасят в себе любую инициативу.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>Я хочу быть проводником энергии.</strong></p>
+        <p style="font-size: 1.1em;"><strong>Поэтому моя задача – быть Энерджайзером и притягивать таких же.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Почему окружение решает все</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #ff9500;">
+        <p style="margin-bottom: 10px;"><strong>Почему именно такая формулировка?</strong></p>
+        <p><strong>Потому что твое окружение – это твое будущее.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p><strong>Поднимают тебя вверх или тянут на дно.</strong></p>
+        <p style="margin-top: 10px;"><strong>Третьего не дано.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Многие говорят: «Надо жалеть слабых и помогать им».</strong></p>
+        <p><strong>Это полнейший бред.</strong></p>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; border-left: 4px solid #34C759;">
+        <p><strong>Жалея вампира, ты не помогаешь ему – ты лишь позволяешь выкачать из себя силы, которые были предназначены для великих дел.</strong></p>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Мои принципы энергетической гигиены</h4>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">1. Фокус на источники</h5>
+        <div style="padding: 15px; background: rgba(0,122,255,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Если ты питаешься от вампиров – ты истощишься.</strong></p>
+            <p><strong>Говори «Да!» тем, кто делится силой.</strong></p>
+            <p style="margin-top: 10px;"><strong>Для всех остальных есть жёсткое «нет».</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">2. Не играй в чужие проблемы</h5>
+        <div style="padding: 15px; background: rgba(52,199,89,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Тебя могут заставить играть в «спасателя», а можно – в «созидателя».</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Игра в спасателя – это разбор последствий чужих ошибок.</strong></p>
+            <p><strong>Игра в созидателя – это создание своих проектов и правильного окружения.</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">3. Чисти свой круг</h5>
+        <div style="padding: 15px; background: rgba(88,86,214,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Не распыляйся – потеряешь энергию.</strong></p>
+            <p><strong>Сначала выведи из своего круга главных энерго-вампиров.</strong></p>
+            <p style="margin-top: 10px;"><strong>Один такой стоит десяти энерджайзеров.</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h5 style="margin-bottom: 15px;">4. Бери ответственность за свой заряд</h5>
+        <div style="padding: 15px; background: rgba(255,68,68,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Но одного желания мало – нужны действия.</strong></p>
+            <p style="margin-bottom: 10px;"><strong>«Это мой выбор», «Это моя зона ответственности», «Я разберусь».</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Развивай привычку искать причину в себе, а не во внешних обстоятельствах – это сделает тебя сильнее.</strong></p>
+            <p><strong>Подсказка: после любого общения спроси себя – я зарядился или разрядился?</strong></p>
+        </div>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <h5 style="margin-bottom: 15px;">5. Сложный процент энергии</h5>
+        <div style="padding: 15px; background: rgba(52,199,89,0.1); border-radius: 8px;">
+            <p style="margin-bottom: 15px;"><strong>Позитивная энергия имеет накопительный эффект.</strong></p>
+            <p style="margin-bottom: 10px;"><strong>Если ты 5 лет был источником силы – к тебе потянутся такие же люди.</strong></p>
+            <p><strong>С проектами так же: чем больше энергии ты в них вкладываешь – тем больше они отдают.</strong></p>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h4 style="margin-bottom: 20px;">Итог</h4>
+    
+    <div style="margin-bottom: 20px; padding: 15px; text-align: center; background: rgba(0,122,255,0.1); border-radius: 8px;">
+        <p style="margin-bottom: 15px;"><strong>Быть успешным – через действия и осознанный выбор окружения становиться энерджайзером.</strong></p>
+    </div>
+    
+    <div style="margin: 25px 0; padding: 20px; text-align: center; background: rgba(88,86,214,0.1); border-radius: 8px;">
+        <p style="font-size: 1.1em;"><strong>Это и есть концепт «Режима Бога» в экосистеме твоей жизни.</strong></p>
+    </div>
+</div>` }
                         ]
                     }
                 ]
@@ -1273,7 +2050,102 @@ const contentData = {
                     {
                         title: "Дисциплина и тумблер",
                         articles: [
-                            { id: 'discipline_1', title: "Как включить тумблер дисциплины", content: `` },
+                            { id: 'discipline_1', title: "Как включить тумблер дисциплины", content: `<div class="article-source">
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+</div>
+
+<h3>Как включить тумблер дисциплины</h3>
+
+<div class="content-card">
+    <p><strong>Дисциплина, как магнит, притягивает абсолютно всех.</strong></p>
+    <p>В какой бы стране я не был, когда выхожу на пробежку – ловлю респекты от местных.</p>
+    <p><strong>Потому что все понимают: бежать не просто. Бег – это дисциплина.</strong></p>
+</div>
+
+<h3>Разум – это балкон</h3>
+<div class="content-card">
+    <div class="dialogue">
+        <p><strong>Дэвид Гоггинс говорил, что разум – это гараж.</strong></p>
+        <p><strong>Я бы сказал так: Разум – это балкон.</strong></p>
+    </div>
+    
+    <div class="warning-text">
+        <p>Каждому жителю постсоветского пространства знакомо понимание захламленного балкона – и боязнь что-то оттуда выбросить.</p>
+        <p><strong>Когда ты хочешь привить себе дисциплину, в твоем балконе разума должно быть для нее место.</strong></p>
+        <p><strong>Иначе тебе просто некуда будет ее засунуть.</strong></p>
+    </div>
+</div>
+
+<h3>Как разгрузить балкон разума?</h3>
+<div class="content-card">
+    <div class="comparison" style="margin: 25px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="comparison-item positive">
+            <h4>1. Прогулка на природе</h4>
+            <div style="margin-top: 15px;">
+                <p><strong>Формат 1: Без подкастов, без музыки</strong></p>
+                <ul>
+                    <li>Просто единение с природой</li>
+                </ul>
+                <p><strong>Цель: разгрузить голову</strong></p>
+            </div>
+            <div style="margin-top: 20px;">
+                <p><strong>Формат 2: Прогулка как классная комната</strong></p>
+                <ul>
+                    <li>Вместо сидения за столом по 10-12 часов</li>
+                    <li>Ходить, слушать подкасты и делать заметки</li>
+                </ul>
+                <p><strong>Результат: физическая нагрузка + обучение</strong></p>
+            </div>
+        </div>
+        
+        <div class="comparison-item positive">
+            <h4>2. Пробежка</h4>
+            <div style="margin-top: 15px;">
+                <p><strong>Многие предприниматели занимаются кардионагрузками.</strong></p>
+                <p>Без музыки, без подкастов.</p>
+                <p><strong>Решение проблемы приходит само в процессе бега.</strong></p>
+            </div>
+            <div style="margin-top: 20px; background: rgba(52,199,89,0.1); padding: 12px; border-radius: 6px;">
+                <p><strong>Это прямая тренировка дисциплины (выносливости)</strong></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="comparison" style="margin: 25px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="comparison-item positive">
+            <h4>3. Медитации</h4>
+            <div style="margin-top: 15px;">
+                <p><strong>15 минут, закрытые глаза, дыхание.</strong></p>
+                <p>Не пытаться зацепиться за мысли – что-то придет в голову, что-то уйдет.</p>
+            </div>
+            <div style="margin-top: 20px; background: rgba(0,122,255,0.1); padding: 12px; border-radius: 6px;">
+                <p><strong>Эффект: создается пространство между эмоцией и действием</strong></p>
+            </div>
+        </div>
+        
+        <div class="comparison-item positive">
+            <h4>4. Баня и холодная ванна</h4>
+            <div style="margin-top: 15px;">
+                <p><strong>Разум постоянно пытается уйти то в прошлое, то в будущее, что вызывает тревогу.</strong></p>
+                <p>В холодной воде тяжело думать о будущем или прошлом – идет калибровка на моменте "сейчас".</p>
+            </div>
+            <div style="margin-top: 20px; background: rgba(88,86,214,0.1); padding: 12px; border-radius: 6px;">
+                <p><strong>Именно в нем находится счастье</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Результат</h3>
+<div class="content-card">
+    <div class="affirmations">
+        <p><strong>После этих практик появляется место для дисциплины.</strong></p>
+    </div>
+    
+    <div class="conclusion">
+        <p><strong>Дискомфорт в моменте окупается готовностью разума к новым вызовам</strong></p>
+    </div>
+</div>` },
                             { id: 'discipline_2', title: "Топ-7 книг по дисциплине", content: `` },
                             { id: 'discipline_3', title: "От дисциплины к системе: как стать лучшей версией себя без насилия", content: `` }
                         ]
