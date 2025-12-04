@@ -1,4 +1,5 @@
 // Система целей и навигации
+
 const app = {
     currentScreen: 'goal-selection',
     selectedGoals: [],
@@ -9,6 +10,43 @@ const app = {
     // === НАВИГАЦИЯ (нормальный способ) ===
     navigationHistory: [],
     currentPage: null,
+
+    shouldSkipLevel(item) {
+        // Если есть прямая ссылка - не пропускаем
+        if (item.directLink) return false;
+        
+        // Проверяем статьи (самый глубокий уровень)
+        if (item.articles) {
+            // Если только одна статья - пропускаем уровень тем
+            return item.articles.length === 1 ? 'all' : false;
+        }
+        
+        // Проверяем темы
+        if (item.topics) {
+            if (item.topics.length === 1) {
+                const singleTopic = item.topics[0];
+                // Если в единственной теме только одна статья
+                if (singleTopic.articles && singleTopic.articles.length === 1) {
+                    return 'all'; // Пропускаем все до статьи
+                }
+                return true; // Пропускаем только уровень тем
+            }
+            return false;
+        }
+        
+        // Проверяем подразделы
+        if (item.subsections) {
+            if (item.subsections.length === 1) {
+                const singleSubsection = item.subsections[0];
+                const skipSubsection = this.shouldSkipLevel(singleSubsection);
+                if (skipSubsection === 'all') return 'all';
+                return skipSubsection || true;
+            }
+            return false;
+        }
+        
+        return false;
+    },
 
     navigateTo(pageFunction, ...args) {
         // Сохраняем текущую страницу в историю
@@ -24,15 +62,29 @@ const app = {
     },
 
     navigateBack() {
-        if (this.navigationHistory.length > 0) {
-            const previousPage = this.navigationHistory.pop();
-            this.currentPage = previousPage;
-            this[previousPage.function].apply(this, previousPage.args);
+    if (this.navigationHistory.length > 0) {
+        const previousPage = this.navigationHistory.pop();
+        this.currentPage = previousPage;
+        
+        // Проверяем, не ведет ли нас назад на страницу с прямой ссылкой
+        if (previousPage.function === 'showCategory' && 
+            this.content[previousPage.args[0]]?.directLink) {
+            // Если это страница с прямой ссылкой (Miro), пропускаем ее
+            // и идем дальше назад или на главную
+            if (this.navigationHistory.length > 0) {
+                const earlierPage = this.navigationHistory.pop();
+                this.currentPage = earlierPage;
+                this[earlierPage.function].apply(this, earlierPage.args);
+            } else {
+                this.navigateTo('showFullLibrary');
+            }
         } else {
-            // Если история пуста - на главную
-            this.navigateTo('showFullLibrary');
+            this[previousPage.function].apply(this, previousPage.args);
         }
-    },
+    } else {
+        this.navigateTo('showFullLibrary');
+    }
+},
 
     getBackButton() {
         return `<button class="back-btn" onclick="app.navigateBack()">← Назад</button>`;
@@ -102,6 +154,7 @@ const app = {
             window.Telegram.WebApp.expand();
         }
     },
+    
     
         // === ДОБАВИТЬ ЭТИ ФУНКЦИИ ===
     applySettings() {
@@ -386,30 +439,119 @@ const app = {
     },
     
         showCategory(categoryId) {
-        const category = this.categories.find(c => c.id === categoryId);
-        const categoryContent = this.content[categoryId];
-        
-        if (!categoryContent || !categoryContent.subsections) {
-            // Резервный вариант для старых структур
-            const html = `
-                ${this.getBackButton()}
-                
-                <div class="header text-left">
-                    <h1>${category.emoji} ${category.name}</h1>
-                    <div class="goal-description">
-                        ${categoryContent?.description || 'Материалы категории'}
-                    </div>
+    const category = this.categories.find(c => c.id === categoryId);
+    const categoryContent = this.content[categoryId];
+    
+    if (!categoryContent || !categoryContent.subsections) {
+        // Резервный вариант для старых структур
+        const html = `
+            ${this.getBackButton()}
+            
+            <div class="header text-left">
+                <h1>${category.emoji} ${category.name}</h1>
+                <div class="goal-description">
+                    ${categoryContent?.description || 'Материалы категории'}
                 </div>
-                
-                ${categoryContent?.articles ? categoryContent.articles.map(article => `
-                    <a class="article-link" onclick="app.showArticleContent('${article.id}')">
-                        ${article.title}
-                    </a>
-                `).join('') : '<div class="subtitle">Материалы скоро появятся</div>'}
-            `;
-            document.getElementById('app').innerHTML = html;
+            </div>
+            
+            ${categoryContent?.articles ? categoryContent.articles.map(article => `
+                <a class="article-link" onclick="app.showArticleContent('${article.id}')">
+                    ${article.title}
+                </a>
+            `).join('') : '<div class="subtitle">Материалы скоро появятся</div>'}
+        `;
+        document.getElementById('app').innerHTML = html;
+        return;
+    }
+    
+    // === ПРОВЕРЯЕМ, НУЖНО ЛИ ПРОПУСКАТЬ УРОВЕНЬ ===
+    const skipInfo = this.shouldSkipLevel(categoryContent);
+    
+    // Если есть прямая ссылка (как для навигации по карте)
+    if (categoryContent.directLink) {
+        const html = `
+            ${this.getBackButton()}
+            
+            <div class="header text-left">
+                <h1>${category.emoji} ${category.name}</h1>
+                <div class="goal-description">
+                    ${categoryContent.description}
+                </div>
+            </div>
+            
+            <button class="direct-link-btn" onclick="window.open('${categoryContent.directLink}', '_blank')">
+                <span class="emoji">🔗</span>
+                Открыть карту Miro
+                <span class="arrow">↗</span>
+            </button>
+        `;
+        document.getElementById('app').innerHTML = html;
+        return;
+    }
+    
+    // Если пропускаем все уровни до статьи
+    if (skipInfo === 'all') {
+        const singleSubsection = categoryContent.subsections[0];
+        const singleTopic = singleSubsection.topics[0];
+        const singleArticle = singleTopic.articles[0];
+        
+        // Показываем статью сразу
+        this.showArticleContent(singleArticle.id);
+        return;
+    }
+    
+    // Если пропускаем уровень подраздела
+    if (skipInfo === true) {
+        const singleSubsection = categoryContent.subsections[0];
+        const skipTopicInfo = this.shouldSkipLevel(singleSubsection);
+        
+        // Если нужно пропустить и уровень тем
+        if (skipTopicInfo === 'all') {
+            const singleTopic = singleSubsection.topics[0];
+            const singleArticle = singleTopic.articles[0];
+            
+            this.showArticleContent(singleArticle.id);
             return;
         }
+        
+        // Показываем темы сразу
+        const html = `
+            ${this.getBackButton()}
+            
+            <div class="header text-left">
+                <h1>${category.emoji} ${category.name}</h1>
+                <div class="goal-description">
+                    ${categoryContent.description}
+                </div>
+            </div>
+            
+            ${singleSubsection.topics.map((topic, topicIndex) => {
+                const topicSkipInfo = this.shouldSkipLevel(topic);
+                
+                if (topicSkipInfo === 'all') {
+                    const singleArticle = topic.articles[0];
+                    return `
+                        <button class="goal-btn" onclick="app.showArticleContent('${singleArticle.id}')">
+                            <span class="emoji">📄</span>
+                            ${topic.title}
+                            <span class="arrow">›</span>
+                        </button>
+                    `;
+                } else {
+                    return `
+                        <button class="goal-btn" onclick="app.navigateTo('showTopic', '${categoryId}', 0, ${topicIndex})">
+                            <span class="emoji">📄</span>
+                            ${topic.title}
+                            <span class="arrow">›</span>
+                        </button>
+                    `;
+                }
+            }).join('')}
+        `;
+        
+        document.getElementById('app').innerHTML = html;
+        return;
+    }
         
         // Новая структура с подразделами
         const html = `
@@ -435,15 +577,15 @@ const app = {
     },
     
         showSubsection(categoryId, subsectionIndex) {
-        console.log('showSubsection работает!', categoryId, subsectionIndex);
-        
-        const category = this.categories.find(c => c.id === categoryId);
-        const categoryContent = this.content[categoryId];
-        
-        if (!categoryContent || !categoryContent.subsections) {
-            this.showCategory(categoryId);
-            return;
-        }
+    console.log('showSubsection работает!', categoryId, subsectionIndex);
+    
+    const category = this.categories.find(c => c.id === categoryId);
+    const categoryContent = this.content[categoryId];
+    
+    if (!categoryContent || !categoryContent.subsections) {
+        this.showCategory(categoryId);
+        return;
+    }
         
         const subsection = categoryContent.subsections[subsectionIndex];
         
