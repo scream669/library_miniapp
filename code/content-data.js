@@ -17,7 +17,11 @@ const contentData = {
                             { 
                                 id: 'miro_map_1', 
                                 title: '📌 Навигационная карта РАД', 
-                                content: ``
+                                content: `<button class="miro-map-btn" onclick="window.open('https://miro.com/app/board/uXjVJqKyXxw=/?share_link_id=434098608523', '_blank')">
+    <span class="miro-icon">🗺️</span>
+    <span class="miro-text">Открыть карту Miro</span>
+    <span class="miro-arrow">↗</span>
+</button>`
                             }
                         ]
                     }
@@ -38,7 +42,7 @@ const contentData = {
                         title: "Режим Бога",
                         articles: [
                             { id: 'godmode_1', title: '"Как родился Режим Бога"', content: `<div class="article-source">
-    <strong>📄 Ссылка на статью:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на статью:</strong> <a href="https://t.me/c/1635501098/181" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -122,7 +126,7 @@ const contentData = {
     <p style="margin: 0 0 18px 0; line-height: 1.7;"><strong>В тот день энергия трансформировалась в систему.</strong></p>
 </div>` },
                             { id: 'godmode_2', title: "РАДкаст №19", content: `<div class="article-source">
-    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://t.me/..." target="_blank">Открыть</a>
+    <strong>📚 Ссылка на библиотеку с подкастом:</strong> <a href="https://onedrive.live.com/redir?cid=8338045a46991313&resid=8338045A46991313!scfd78cee61e94fbda36a8ebf5e38316b&ithint=folder&e=ngdtcX&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE_ZT1uZ2R0Y1g" target="_blank">Открыть</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -224,7 +228,7 @@ const contentData = {
                         title: "Via-negativa",
                         articles: [
                             { id: 'vianegativa_1', title: "Via Negativa", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/321" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -341,7 +345,7 @@ const contentData = {
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>Я заряжен и готов к новому рывку.</strong></p>
 </div>` },
                             { id: 'vianegativa_2', title: "РАДкаст №22", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📚 Ссылка на библиотеку с подкастом:</strong> <a href="https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE%5FZT1uZ2R0Y1g&id=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&cid=8338045A46991313" target="_blank">Открыть</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -389,7 +393,7 @@ const contentData = {
                         title: "Диджитал-стоицизм", 
                         articles: [
                             { id: 'digitalstoicism_1', title: "Диджитал-стоицизм — твой единственный выход", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/142" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -451,7 +455,7 @@ const contentData = {
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>— Сунь Цзы, «Искусство войны»</strong></p>
 </div>` },
 { id: 'digitalstoicism_2', title: "Современный стоический мудрец", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/418" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -501,7 +505,13 @@ const contentData = {
     
     <hr style="margin: 35px 0; height: 1px; background: currentColor; opacity: 0.1; border: none;">
     
-    <h2 style="font-size: 1.4em; font-weight: 600; margin: 35px 0 18px 0; line-height: 1.3;">Топ-5 книг по стоицизму (Библиотека РАД)</h2>
+    <h2 style="font-size: 1.4em; font-weight: 600; margin: 35px 0 18px 0; line-height: 1.3;">
+    Топ-5 книг по стоицизму 
+    <a href="https://onedrive.live.com/?cid=8338045a46991313&id=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&resid=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&ithint=folder&e=ngdtcX&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE%5FZT1uZ2R0Y1g&v=validatepermission" target="_blank" 
+       style="color: #007aff; text-decoration: underline;">
+        (Библиотека РАД)
+    </a>
+</h2>
     
     <ul style="margin: 18px 0 25px 0; padding-left: 20px;">
         <li style="margin-bottom: 10px; line-height: 1.6;"><strong>«Размышления» Марк Аврелий</strong> - Практическое руководство для внутренней гармонии и мудрого отношения к внешним обстоятельствам от Римского императора.</li>
@@ -526,7 +536,7 @@ const contentData = {
     
     <hr style="margin: 35px 0; height: 1px; background: currentColor; opacity: 0.1; border: none;">
     
-    <h2 style="font-size: 1.4em; font-weight: 600; margin: 35px 0 18px 0; line-height: 1.3;">Вывод</h2>
+    <h2 style="font-size: 1.4em; font-weight: 600; margin: 35px 0 18px 0; line-height: 1.3;">Вывод:</h2>
     
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>В современном мире, где постоянный стресс, неопределённость, эмоциональные горки стали абсолютной нормой, философия стоицизма будет решением.</strong></p>
 </div>` }
@@ -536,7 +546,7 @@ const contentData = {
                         title: "Ментальные модели",
                         articles: [
                             { id: 'mentalmodels_1', title: "Разрушающая человека ментальная модель №1", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📚 Ссылка на библиотеку с подкастом:</strong> <a href="https://onedrive.live.com/?cid=8338045a46991313&id=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&resid=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&ithint=folder&e=ngdtcX&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE%5FZT1uZ2R0Y1g&v=validatepermission" target="_blank">Открыть</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -632,7 +642,15 @@ const contentData = {
     
     <p style="margin: 0 0 18px 0; line-height: 1.7;"><strong>"Скажи жизни "Да"" Виктора Франкла.</strong></p>
     
-    <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>📚 <a href="#" style="color: inherit; text-decoration: underline;">Ссылка на библиотеку РАД</a></strong></p>
+    <p style="margin: 0 0 25px 0; line-height: 1.7;">
+    <strong>📚 
+        <a href="https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE%5FZT1uZ2R0Y1g&id=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&cid=8338045A46991313" 
+           target="_blank" 
+           style="color: #007aff; text-decoration: underline;">
+            Ссылка на библиотеку РАД
+        </a>
+    </strong>
+</p>
     
     <p style="margin: 0 0 18px 0; line-height: 1.7;"><strong>Это одна из моих любимых книг, и одна из самых тяжелых.</strong></p>
     
@@ -655,7 +673,7 @@ const contentData = {
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>Но значит и успех – тоже ваша вина.</strong></p>
 </div>` },
                             { id: 'mentalmodels_2', title: "РАДкаст №23", content: `<div class="article-source">
-    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://t.me/..." target="_blank">Открыть</a>
+    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE%5FZT1uZ2R0Y1g&id=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&cid=8338045A46991313" target="_blank">Открыть</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -699,7 +717,7 @@ const contentData = {
                         title: "Современный стоический мудрец",
                         articles: [
                             { id: 'twotypes_1', title: "Современный стоический мудрец", content: `<div class="article-source">
-    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://t.me/..." target="_blank">Открыть</a>
+    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://onedrive.live.com/redir?cid=8338045a46991313&resid=8338045A46991313!scfd78cee61e94fbda36a8ebf5e38316b&ithint=folder&e=ngdtcX&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE_ZT1uZ2R0Y1g" target="_blank">Открыть</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -807,7 +825,7 @@ const contentData = {
                         title: "Общество диджитал-потребления",
                         articles: [
                             { id: 'digitalconsumption_1', title: "РАДкаст №12", content: `<div class="article-source">
-    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://t.me/..." target="_blank">Открыть</a>
+    <strong>📚 Ссылка на библиотеку:</strong> <a href="https://onedrive.live.com/redir?cid=8338045a46991313&resid=8338045A46991313!scfd78cee61e94fbda36a8ebf5e38316b&ithint=folder&e=ngdtcX&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE_ZT1uZ2R0Y1g" target="_blank">Открыть</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -860,7 +878,7 @@ const contentData = {
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>Пусть немного, но постоянно.</strong></p>
 </div>` },
                             { id: 'digitalconsumption_2', title: "Общество диджитал потребления", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/340" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -989,7 +1007,7 @@ const contentData = {
                         title: "Зависимость от телефона",
                         articles: [
                             { id: 'phoneaddiction_1', title: "Зависимость от телефона", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/61" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -1039,7 +1057,19 @@ const contentData = {
     
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>"Делает ли это меня лучше?"</strong></p>
     
-    <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>В YouTube-видео "Как отлипнуть от телефона" <a href="https://youtu.be/-ASB6bccG2E" style="color: inherit; text-decoration: underline;">(https://youtu.be/-ASB6bccG2E)</a> дал пошаговый алгоритм борьбы с зависимостью.</strong></p>
+    <p style="margin: 0 0 25px 0; line-height: 1.7;">
+    <strong>
+        В YouTube-видео 
+        <a href="https://youtu.be/-ASB6bccG2E" 
+           target="_blank" 
+           style="color: #007aff; text-decoration: none;"
+           onmouseover="this.style.textDecoration='underline';" 
+           onmouseout="this.style.textDecoration='none';">
+            "Как отлипнуть от телефона"
+        </a> 
+        дал пошаговый алгоритм борьбы с зависимостью.
+    </strong>
+</p>
     
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>Информативная выжимка из видео:</strong></p>
     
@@ -1093,7 +1123,7 @@ const contentData = {
                         title: '"Ты мешок"',
                         articles: [
                             { id: 'meshok_1', title: '"Ты мешок"', content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/352" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -1204,7 +1234,7 @@ const contentData = {
                         title: '"Ты не странный"',
                         articles: [
                             { id: 'notweird_1', title: '"Ты не странный"', content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/314" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -1278,7 +1308,7 @@ const contentData = {
                         title: '"Особый тип человека"',
                         articles: [
                             { id: 'specialtype_1', title: '"Особый тип человека"', content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/428" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -1382,7 +1412,7 @@ const contentData = {
                         title: '"Интернет — умер?"',
                         articles: [
                             { id: 'internetdead_1', title: '"Интернет — умер?"', content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/384" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
@@ -1531,7 +1561,7 @@ const contentData = {
                         title: "Есть два типа людей",
                         articles: [
                             { id: 'twotypes_2', title: "Есть два типа людей", content: `<div class="article-source">
-    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/..." target="_blank">Открыть в Телеграмм</a>
+    <strong>📄 Ссылка на пост:</strong> <a href="https://t.me/c/1635501098/64" target="_blank">Открыть в Телеграмм</a>
 </div>
 
 <div style="max-width: 100%; line-height: 1.7;">
