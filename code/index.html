@@ -1088,6 +1088,202 @@
             font-size: 20px;
             opacity: 0.8;
         }
+        /* Стили для изображений в статьях */
+.article-image-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.clickable-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clickable-image:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+}
+
+.clickable-image:active {
+    opacity: 0.8;
+}
+/* Стили для просмотрщика фото */
+.photo-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-viewer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-viewer-header {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1001;
+    backdrop-filter: blur(10px);
+}
+
+.photo-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    flex: 1;
+    margin: 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.photo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.fullscreen-photo {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .photo-viewer-header {
+        padding: 12px 16px;
+    }
+    
+    .photo-container {
+        padding: 10px;
+    }
+    
+    .photo-title {
+        font-size: 14px;
+    }
+}
+/* Улучшенные стили для просмотрщика с зумом */
+.photo-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.photo-viewer-header {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1001;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.photo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+    touch-action: none;
+}
+
+.photo-container:active {
+    cursor: grabbing;
+}
+
+.zoomable-photo {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    -webkit-user-drag: none;
+}
+
+.photo-controls {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.zoom-hint {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.zoom-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 6px;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.zoom-btn:active {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .photo-viewer-header {
+        padding: 12px 16px;
+    }
+    
+    .photo-controls {
+        padding: 12px 16px;
+    }
+    
+    .zoom-hint {
+        font-size: 12px;
+    }
+}
         /* === КОНЕЦ === */
         /* === КОНЕЦ НОВОЙ СИСТЕМЫ === */
         /* === КОНЕЦ СТИЛЕЙ МЕНЮ === */
