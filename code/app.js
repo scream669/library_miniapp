@@ -47,16 +47,7 @@ const app = {
         
         return false;
     },
-    saveCurrentState() {
-    if (this.currentPage && this.currentPage.function !== 'showFullLibrary') {
-        const lastInHistory = this.navigationHistory[this.navigationHistory.length - 1];
-        if (!lastInHistory || 
-            lastInHistory.function !== this.currentPage.function ||
-            JSON.stringify(lastInHistory.args) !== JSON.stringify(this.currentPage.args)) {
-            this.navigationHistory.push({...this.currentPage});
-        }
-    }
-},
+
     navigateTo(pageFunction, ...args) {
         // Сохраняем текущую страницу в историю
         if (this.currentPage) {
@@ -70,15 +61,27 @@ const app = {
         this[pageFunction].apply(this, args);
     },
 
-navigateBack() {
-    console.log('Назад. История:', this.navigationHistory.length);
-    
+    navigateBack() {
     if (this.navigationHistory.length > 0) {
         const previousPage = this.navigationHistory.pop();
         this.currentPage = previousPage;
-        this[previousPage.function].apply(this, previousPage.args);
+        
+        // Проверяем, не ведет ли нас назад на страницу с прямой ссылкой
+        if (previousPage.function === 'showCategory' && 
+            this.content[previousPage.args[0]]?.directLink) {
+            // Если это страница с прямой ссылкой (Miro), пропускаем ее
+            // и идем дальше назад или на главную
+            if (this.navigationHistory.length > 0) {
+                const earlierPage = this.navigationHistory.pop();
+                this.currentPage = earlierPage;
+                this[earlierPage.function].apply(this, earlierPage.args);
+            } else {
+                this.navigateTo('showFullLibrary');
+            }
+        } else {
+            this[previousPage.function].apply(this, previousPage.args);
+        }
     } else {
-        // Если истории нет, возвращаемся в библиотеку
         this.navigateTo('showFullLibrary');
     }
 },
@@ -465,51 +468,26 @@ navigateBack() {
     const skipInfo = this.shouldSkipLevel(categoryContent);
     
     // Если есть прямая ссылка (как для навигации по карте)
-    // Если есть прямая ссылка (как для навигации по карте)
-if (categoryContent.directLink) {
-    // === ВАЖНО: Сохраняем состояние ПЕРЕД отображением ===
-    if (this.currentPage) {
-        this.saveCurrentState();
-    }
-    
-    const html = `
-        ${this.getBackButton()}
-        
-        <div class="header text-left">
-            <h1>${category.emoji} ${category.name}</h1>
-            <div class="goal-description">
-                ${categoryContent.description}
+    if (categoryContent.directLink) {
+        const html = `
+            ${this.getBackButton()}
+            
+            <div class="header text-left">
+                <h1>${category.emoji} ${category.name}</h1>
+                <div class="goal-description">
+                    ${categoryContent.description}
+                </div>
             </div>
-        </div>
-        
-        <button class="direct-link-btn" onclick="window.open('${categoryContent.directLink}', '_blank')">
-            <span class="emoji">🔗</span>
-            Открыть карту Miro
-            <span class="arrow">↗</span>
-        </button>
-        
-        <div style="margin-top: 30px; padding: 20px; background: var(--card-bg); border-radius: 12px;">
-            <p style="color: var(--text-secondary); margin-bottom: 10px;">
-                <strong>Как пользоваться картой:</strong>
-            </p>
-            <ul style="color: var(--text-secondary); padding-left: 20px;">
-                <li>Карта откроется в новой вкладке</li>
-                <li>Для навигации используйте кнопку "Назад" вверху этой страницы</li>
-                <li>Закройте вкладку Miro, когда закончите</li>
-            </ul>
-        </div>
-    `;
-    
-    document.getElementById('app').innerHTML = html;
-    
-    // === Устанавливаем текущую страницу ===
-    this.currentPage = { 
-        function: 'showCategory', 
-        args: [categoryId] 
-    };
-    
-    return;
-}
+            
+            <button class="direct-link-btn" onclick="window.open('${categoryContent.directLink}', '_blank')">
+                <span class="emoji">🔗</span>
+                Открыть карту Miro
+                <span class="arrow">↗</span>
+            </button>
+        `;
+        document.getElementById('app').innerHTML = html;
+        return;
+    }
     
     // Если пропускаем все уровни до статьи
     if (skipInfo === 'all') {
@@ -518,9 +496,7 @@ if (categoryContent.directLink) {
         const singleArticle = singleTopic.articles[0];
         
         // Показываем статью сразу
-        this.saveCurrentState(); // ← ДОБАВЬТЕ ЭТУ СТРОЧКУ
-this.currentPage = { function: 'showCategory', args: [categoryId] };
-this.showArticleContent(singleArticle.id);
+        this.showArticleContent(singleArticle.id);
         return;
     }
     
@@ -534,9 +510,7 @@ this.showArticleContent(singleArticle.id);
             const singleTopic = singleSubsection.topics[0];
             const singleArticle = singleTopic.articles[0];
             
-            this.saveCurrentState(); // ← ДОБАВЬТЕ ЭТУ СТРОЧКУ
-this.currentPage = { function: 'showCategory', args: [categoryId] };
-this.showArticleContent(singleArticle.id);
+            this.showArticleContent(singleArticle.id);
             return;
         }
         
@@ -680,9 +654,6 @@ this.showArticleContent(singleArticle.id);
     },
 
         showArticleContent(articleId) {
-        if (this.currentPage && this.currentPage.function !== 'showArticleContent') {
-            this.saveCurrentState();
-        }
         console.log('showArticleContent работает!', articleId);
         
         // Универсальный поиск статьи
@@ -749,241 +720,40 @@ this.showArticleContent(singleArticle.id);
         document.getElementById('app').innerHTML = html;
     },
     // === ДОБАВЬ ЗДЕСЬ НОВУЮ ФУНКЦИЮ ===
-        // === Функция просмотра фото (УЖЕ ЕСТЬ У ВАС - проверьте) ===
-    // === Функция просмотра фото с зумом ===
-showPhotoViewer(photoUrl, photoTitle) {
-    // Сохраняем текущее состояние перед открытием фото
-    if (this.currentPage && this.currentPage.function !== 'showPhotoViewer') {
-        this.saveCurrentState();
-    }
-    
-    const html = `
-        <div id="photo-viewer" class="photo-viewer-overlay" onclick="app.closePhotoViewer()">
-            <div class="photo-viewer-header">
-                <button class="back-btn" onclick="app.closePhotoViewer()">← Назад</button>
-                <div class="photo-title">${photoTitle || 'Фотография'}</div>
-                <button class="zoom-btn" onclick="app.resetPhotoZoom()" style="background: none; border: none; color: white; font-size: 20px; padding: 5px 10px;">⎌</button>
-            </div>
-            
-            <div class="photo-container" id="photo-container">
-                <img src="${photoUrl}" 
-                     alt="${photoTitle || 'Фото'}" 
-                     class="zoomable-photo"
-                     id="zoomable-photo"
-                     onload="app.initPhotoZoom()">
-            </div>
-            
-            <div class="photo-controls">
-                <div class="zoom-hint">Двойное нажатие для зума • Движение для прокрутки</div>
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('app').innerHTML = html;
-    this.currentPage = { 
-        function: 'showPhotoViewer', 
-        args: [photoUrl, photoTitle] 
-    };
-},
-
-closePhotoViewer() {
-    this.navigateBack();
-},
-
-resetPhotoZoom() {
-    const photo = document.getElementById('zoomable-photo');
-    if (photo) {
-        photo.style.transform = 'scale(1) translate(0px, 0px)';
-        photo.dataset.scale = '1';
-        photo.dataset.translateX = '0';
-        photo.dataset.translateY = '0';
-    }
-},
-
-initPhotoZoom() {
-    const photo = document.getElementById('zoomable-photo');
-    const container = document.getElementById('photo-container');
-    
-    if (!photo || !container) return;
-    
-    let currentScale = 1;
-    let currentTranslateX = 0;
-    let currentTranslateY = 0;
-    let isDragging = false;
-    let startX, startY, initialTranslateX, initialTranslateY;
-    let lastTapTime = 0;
-    let doubleTapTimeout;
-    
-    // Сохраняем состояние в data-атрибутах
-    photo.dataset.scale = '1';
-    photo.dataset.translateX = '0';
-    photo.dataset.translateY = '0';
-    
-    // Двойное нажатие для зума
-    photo.addEventListener('click', (e) => {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTapTime;
+    showPhotoViewer(photoUrl, photoTitle) {
+        // Сохраняем текущее состояние перед открытием фото
+        if (this.currentPage) {
+            this.navigationHistory.push(this.currentPage);
+        }
         
-        if (tapLength < 300 && tapLength > 0) {
-            // Двойной тап
-            e.preventDefault();
-            e.stopPropagation();
-            
-            if (currentScale === 1) {
-                // Увеличиваем
-                currentScale = 2;
+        const html = `
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000000; z-index: 1000; overflow-y: auto;">
+                <div style="position: sticky; top: 0; background: rgba(0,0,0,0.8); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1001;">
+                    <button onclick="app.navigateBack()" style="background: none; border: none; color: #007aff; font-size: 17px; font-weight: 500; cursor: pointer;">
+                        ← Назад
+                    </button>
+                    <div style="color: white; font-size: 16px; font-weight: 500; text-align: center; flex: 1; margin: 0 15px;">
+                        ${photoTitle}
+                    </div>
+                    <div style="width: 60px;"></div>
+                </div>
                 
-                // Центрируем на точке нажатия
-                const rect = photo.getBoundingClientRect();
-                const offsetX = e.clientX - rect.left;
-                const offsetY = e.clientY - rect.top;
-                
-                // Смещаем так, чтобы точка нажатия стала центром
-                const containerRect = container.getBoundingClientRect();
-                currentTranslateX = (containerRect.width / 2 - offsetX) * (currentScale - 1);
-                currentTranslateY = (containerRect.height / 2 - offsetY) * (currentScale - 1);
-            } else {
-                // Сбрасываем
-                currentScale = 1;
-                currentTranslateX = 0;
-                currentTranslateY = 0;
-            }
-            
-            applyTransform();
-            lastTapTime = 0;
-            
-            if (doubleTapTimeout) {
-                clearTimeout(doubleTapTimeout);
-            }
-        } else {
-            // Одиночный тап - пока не делаем ничего
-            lastTapTime = currentTime;
-            
-            doubleTapTimeout = setTimeout(() => {
-                lastTapTime = 0;
-            }, 300);
-        }
-    });
-    
-    // Драг для прокрутки при зуме
-    photo.addEventListener('mousedown', startDrag);
-    photo.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        startDrag({
-            clientX: e.touches[0].clientX,
-            clientY: e.touches[0].clientY
-        });
-    });
-    
-    function startDrag(e) {
-        if (currentScale > 1) {
-            isDragging = true;
-            startX = e.clientX - currentTranslateX;
-            startY = e.clientY - currentTranslateY;
-            initialTranslateX = currentTranslateX;
-            initialTranslateY = currentTranslateY;
-            
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('touchmove', touchDrag);
-            document.addEventListener('mouseup', stopDrag);
-            document.addEventListener('touchend', stopDrag);
-        }
-    }
-    
-    function drag(e) {
-        if (isDragging) {
-            e.preventDefault();
-            currentTranslateX = e.clientX - startX;
-            currentTranslateY = e.clientY - startY;
-            applyTransform();
-        }
-    }
-    
-    function touchDrag(e) {
-        if (isDragging) {
-            e.preventDefault();
-            currentTranslateX = e.touches[0].clientX - startX;
-            currentTranslateY = e.touches[0].clientY - startY;
-            applyTransform();
-        }
-    }
-    
-    function stopDrag() {
-        isDragging = false;
-        document.removeEventListener('mousemove', drag);
-        document.removeEventListener('touchmove', touchDrag);
-        document.removeEventListener('mouseup', stopDrag);
-        document.removeEventListener('touchend', stopDrag);
+                <div style="padding: 20px; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+                    <img src="${photoUrl}" 
+                         alt="${photoTitle}" 
+                         style="width: 100%; max-width: 100%; height: auto; border-radius: 8px;">
+                </div>
+            </div>
+        `;
         
-        // Ограничиваем движение пределами контейнера
-        const maxTranslate = calculateMaxTranslate();
-        currentTranslateX = Math.max(Math.min(currentTranslateX, maxTranslate.maxX), maxTranslate.minX);
-        currentTranslateY = Math.max(Math.min(currentTranslateY, maxTranslate.maxY), maxTranslate.minY);
-        applyTransform();
-    }
-    
-    function calculateMaxTranslate() {
-        const photoRect = photo.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
+        document.getElementById('app').innerHTML = html;
         
-        const scaledWidth = photoRect.width;
-        const scaledHeight = photoRect.height;
-        
-        const maxX = Math.max(0, (scaledWidth - containerRect.width) / 2);
-        const minX = -maxX;
-        const maxY = Math.max(0, (scaledHeight - containerRect.height) / 2);
-        const minY = -maxY;
-        
-        return { maxX, minX, maxY, minY };
+        // Запоминаем текущую страницу как просмотр фото
+        this.currentPage = { 
+            function: 'showPhotoViewer', 
+            args: [photoUrl, photoTitle] 
+        };
     }
-    
-    function applyTransform() {
-        // Сохраняем состояние
-        photo.dataset.scale = currentScale;
-        photo.dataset.translateX = currentTranslateX;
-        photo.dataset.translateY = currentTranslateY;
-        
-        // Применяем трансформацию
-        photo.style.transform = `scale(${currentScale}) translate(${currentTranslateX}px, ${currentTranslateY}px)`;
-        photo.style.transition = isDragging ? 'none' : 'transform 0.3s ease';
-    }
-    
-    // Пинч-зум для тач-устройств
-    let initialDistance = null;
-    
-    container.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 2) {
-            e.preventDefault();
-            initialDistance = getDistance(e.touches[0], e.touches[1]);
-            initialScale = currentScale;
-        }
-    });
-    
-    container.addEventListener('touchmove', (e) => {
-        if (e.touches.length === 2) {
-            e.preventDefault();
-            const currentDistance = getDistance(e.touches[0], e.touches[1]);
-            if (initialDistance) {
-                const scaleFactor = currentDistance / initialDistance;
-                currentScale = initialScale * scaleFactor;
-                // Ограничиваем масштаб
-                currentScale = Math.max(1, Math.min(currentScale, 5));
-                applyTransform();
-            }
-        }
-    });
-    
-    container.addEventListener('touchend', () => {
-        initialDistance = null;
-    });
-    
-    function getDistance(touch1, touch2) {
-        const dx = touch1.clientX - touch2.clientX;
-        const dy = touch1.clientY - touch2.clientY;
-        return Math.sqrt(dx * dx + dy * dy);
-    }
-}
-    
     // === КОНЕЦ ДОБАВЛЕНИЯ ===
 }; // <- Эта фигурная скобка закрывает объект app
 // Инициализация при загрузке
