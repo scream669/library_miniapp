@@ -365,37 +365,36 @@ personal: {
                             { id: 'godmode_3', title: "Убийство режима бога", content: `
 <div style="margin: 25px 0;">
 
-    <div class="article-image-block">
+    <div style="text-align: center; margin-bottom: 25px;">
         <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_1.jpg"
-             onclick="app.openImage(this.src)"
-             class="article-image">
-        <div class="article-image-hint">Нажмите для увеличения</div>
+             onclick="app.openImage('https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_1.jpg')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
     </div>
 
-    <div class="article-image-block">
+    <div style="text-align: center; margin-bottom: 25px;">
         <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_2.jpg"
-             onclick="app.openImage(this.src)"
-             class="article-image">
-        <div class="article-image-hint">Нажмите для увеличения</div>
+             onclick="app.openImage('https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_2.jpg')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
     </div>
 
-    <div class="article-image-block">
+    <div style="text-align: center; margin-bottom: 25px;">
         <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_3.jpg"
-             onclick="app.openImage(this.src)"
-             class="article-image">
-        <div class="article-image-hint">Нажмите для увеличения</div>
+             onclick="app.openImage('https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_3.jpg')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
     </div>
 
-    <div class="article-image-block">
+    <div style="text-align: center;">
         <img src="https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_4.jpg"
-             onclick="app.openImage(this.src)"
-             class="article-image">
-        <div class="article-image-hint">Нажмите для увеличения</div>
+             onclick="app.openImage('https://raw.githubusercontent.com/scream669/radgilmanov_app/main/pictures/killing_gm_4.jpg')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
     </div>
 
 </div>
-`
-},
+`},
 
                         ]
                     },
