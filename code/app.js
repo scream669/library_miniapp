@@ -11,6 +11,56 @@ const app = {
     navigationHistory: [],
     currentPage: null, // { function: 'showFullLibrary', args: [...] }
 
+    openImage(src) {
+    const overlay = document.createElement('div');
+    overlay.className = 'image-viewer-overlay';
+
+    overlay.innerHTML = `
+        <div class="image-viewer">
+            <img src="${src}" class="zoomable-image" />
+            <button class="image-close-btn" onclick="app.closeImageViewer()">✕</button>
+        </div>
+    `;
+        
+    document.body.appendChild(overlay);
+
+    // Включаем жесты зума
+    const img = overlay.querySelector('.zoomable-image');
+    this.enablePinchZoom(img);
+},
+
+    closeImageViewer() {
+    const overlay = document.querySelector('.image-viewer-overlay');
+    if (overlay) overlay.remove();
+},
+enablePinchZoom(img) {
+    let scale = 1;
+    let startDistance = 0;
+
+    img.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            startDistance = Math.sqrt(dx * dx + dy * dy);
+        }
+    });
+
+    img.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            e.preventDefault();
+
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+
+            const newDistance = Math.sqrt(dx * dx + dy * dy);
+            const delta = newDistance / startDistance;
+
+            scale = Math.min(Math.max(1, delta), 4); // ограничение масштаба
+
+            img.style.transform = `scale(${scale})`;
+        }
+    }, { passive: false });
+},
     shouldSkipLevel(item) {
         if (!item) return false;
         if (item.directLink) return false;
@@ -67,15 +117,20 @@ const app = {
 
     // Переход без добавления в историю (замена текущей страницы)
     navigateReplace(pageFunction, ...args) {
-        console.log('NAVIGATE REPLACE', pageFunction, args);
-        this.currentPage = { function: pageFunction, args };
-        if (typeof this[pageFunction] === 'function') {
-            this[pageFunction].apply(this, args);
-        } else {
-            console.error('Unknown page function:', pageFunction);
-            this.showFullLibrary();
-        }
-    },
+    console.log('NAVIGATE REPLACE', pageFunction, args);
+
+    // Заменяем текущую страницу, НЕ добавляя её в историю
+    this.currentPage = { function: pageFunction, args };
+
+    // Вызываем соответствующую функцию
+    if (typeof this[pageFunction] === 'function') {
+        this[pageFunction](...args);
+    } else {
+        console.error('Unknown page function:', pageFunction);
+        this.showFullLibrary();
+    }
+},
+
 
     // Назад: восстанавливаем предыдущую страницу из стека
     navigateBack() {
@@ -96,9 +151,20 @@ const app = {
         }
     },
 
+    goHome() {
+    this.navigationHistory = [];  // очищаем историю
+    this.navigateReplace('showFullLibrary');
+},
+
     getBackButton() {
-        return `<button class="back-btn" onclick="app.navigateBack()">← Назад</button>`;
-    },
+    return `
+        <div class="nav-buttons">
+            <button class="back-btn" onclick="app.navigateBack()">← Назад</button>
+            <button class="homereturn-btn" onclick="app.goHome()">⤹ На главную</button>
+        </div>
+    `;
+},
+
 
     categories: [
         { id: 'personal', name: 'Ваша подборка', emoji: '🎯' },
@@ -118,6 +184,19 @@ const app = {
     ],
 
     personal: [
+        { id: 'discipline', name: 'Прокачать дисциплину', emoji: '💪' },
+        { id: 'business', name: 'Запустить бизнес', emoji: '🚀' },
+        { id: 'purpose', name: 'Найти предназначение', emoji: '✨' },
+        { id: 'energy', name: 'Вернуть энергию', emoji: '⚡️' },
+        { id: 'mindset', name: 'Прокачать мышление', emoji: '🧠' },
+        { id: 'phone', name: 'Освободиться от телефона', emoji: '📵' },
+        { id: 'health', name: 'Улучшить здоровье', emoji: '❤️' },
+        { id: 'learning', name: 'Научиться учиться', emoji: '📚' },
+        { id: 'happiness', name: 'Найти счастье', emoji: '😊' },
+        { id: 'tech', name: 'Освоить технологии', emoji: '🤖' }
+    ],
+
+    goals: [
         { id: 'discipline', name: 'Прокачать дисциплину', emoji: '💪' },
         { id: 'business', name: 'Запустить бизнес', emoji: '🚀' },
         { id: 'purpose', name: 'Найти предназначение', emoji: '✨' },
@@ -163,42 +242,60 @@ const app = {
     },
 
     showSettingsMenu() {
-        const html = `
-            <div class="settings-overlay" onclick="app.hideSettingsMenu()">
-                <div class="settings-panel" onclick="event.stopPropagation()">
-                    <div class="settings-header">
-                        <h3>Настройки</h3>
-                        <button class="close-btn" onclick="app.hideSettingsMenu()">×</button>
-                    </div>
-                    <div class="setting-item">
-                        <span>Тема:</span>
-                        <button class="theme-toggle ${this.currentTheme === 'dark' ? 'active' : ''}" 
-                                onclick="app.toggleTheme()">
-                            ${this.currentTheme === 'dark' ? '☀️ Светлая' : '🌙 Тёмная'}
-                        </button>
-                    </div>
-                    <div class="setting-item">
-                        <span>Размер текста:</span>
-                        <div class="text-size-controls">
-                            <button class="text-size-btn ${this.textSize === 'small' ? 'active' : ''}" 
-                                    onclick="app.changeTextSize('small')">A</button>
-                            <button class="text-size-btn ${this.textSize === 'medium' ? 'active' : ''}" 
-                                    onclick="app.changeTextSize('medium')">A</button>
-                            <button class="text-size-btn ${this.textSize === 'large' ? 'active' : ''}" 
-                                    onclick="app.changeTextSize('large')">A</button>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <span>Цели развития:</span>
-                        <button class="settings-action-btn" onclick="app.showGoalSelection(); app.hideSettingsMenu()">
-                            ${this.selectedGoals.length > 0 ? 'Изменить цели' : 'Выбрать цели'}
-                        </button>
-                    </div>
+    if (document.querySelector('.settings-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'settings-overlay';
+    overlay.innerHTML = `
+        <div class="settings-panel" onclick="event.stopPropagation()">
+            <div class="settings-header">
+                <h3>Настройки</h3>
+                <button class="close-btn" id="close-settings-btn">×</button>
+            </div>
+            <div class="setting-item">
+                <span>Тема:</span>
+                <button class="theme-toggle ${this.currentTheme === 'dark' ? 'active' : ''}" id="theme-toggle-btn">
+                    ${this.currentTheme === 'dark' ? '☀️ Светлая' : '🌙 Тёмная'}
+                </button>
+            </div>
+            <div class="setting-item">
+                <span>Размер текста:</span>
+                <div class="text-size-controls">
+                    <button class="text-size-btn ${this.textSize === 'small' ? 'active' : ''}" id="text-small-btn">A</button>
+                    <button class="text-size-btn ${this.textSize === 'medium' ? 'active' : ''}" id="text-medium-btn">A</button>
+                    <button class="text-size-btn ${this.textSize === 'large' ? 'active' : ''}" id="text-large-btn">A</button>
                 </div>
             </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', html);
-    },
+            <div class="setting-item">
+                <span>Цели развития:</span>
+                <button class="settings-action-btn" id="change-goals-btn">
+                    ${this.selectedGoals.length > 0 ? 'Изменить цели' : 'Выбрать цели'}
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Закрытие при клике вне панели
+    overlay.addEventListener('click', () => this.hideSettingsMenu());
+
+    document.body.appendChild(overlay);
+
+    // Навешиваем обработчики
+    document.getElementById('close-settings-btn').onclick = () => this.hideSettingsMenu();
+    document.getElementById('theme-toggle-btn').onclick = () => this.toggleTheme();
+    document.getElementById('text-small-btn').onclick = () => this.changeTextSize('small');
+    document.getElementById('text-medium-btn').onclick = () => this.changeTextSize('medium');
+    document.getElementById('text-large-btn').onclick = () => this.changeTextSize('large');
+
+    document.getElementById('change-goals-btn').onclick = () => {
+        // Сначала прячем overlay, затем навигируем на экран выбора целей.
+        // hideSettingsMenu() удалит overlay из DOM, навигация отработает корректно.
+        this.hideSettingsMenu();
+        // Используем navigateReplace — заменяем текущую страницу (мы не хотим пушить overlay в историю)
+        this.navigateReplace('showGoalSelection');
+    };
+},
+
 
     hideSettingsMenu() {
         const overlay = document.querySelector('.settings-overlay');
@@ -219,59 +316,66 @@ const app = {
     },
 
     showGoalSelection() {
-        this.currentScreen = 'goal-selection';
+    this.currentScreen = 'goal-selection';
 
-        const html = `
-            <div class="header">
-                <div class="logo">🚀</div>
-                <h1>Расскажите, что для вас актуально прямо сейчас?</h1>
-                <div class="subtitle">Выберите до 3-х целей</div>
-            </div>
+    const html = `
+        <div class="header">
+            <div class="logo">🚀</div>
+            <h1>Расскажите, что для вас актуально прямо сейчас?</h1>
+            <div class="subtitle">Выберите до 3-х целей</div>
+        </div>
 
-            <div class="counter" id="counter">Выбрано: ${this.selectedGoals.length}/3</div>
+        <div class="counter" id="counter">Выбрано: ${this.selectedGoals.length}/3</div>
 
-            <div id="goals-list">
-                ${this.goals.map(goal => {
-                    const isSelected = this.selectedGoals.includes(goal.id);
-                    return `
-                        <button class="goal-btn ${isSelected ? 'selected' : ''}" 
-                                onclick="app.toggleGoal('${goal.id}')" 
-                                id="goal-${goal.id}">
-                            <span class="emoji">${goal.emoji}</span>
-                            ${goal.name}
-                            <span class="check">✓</span>
-                        </button>
-                    `;
-                }).join('')}
-            </div>
+        <div id="goals-list">
+            ${this.goals.map(goal => {
+                const isSelected = this.selectedGoals.includes(goal.id);
+                return `
+                    <button class="goal-btn ${isSelected ? 'selected' : ''}" 
+                            onclick="app.toggleGoal('${goal.id}')" 
+                            id="goal-${goal.id}">
+                        <span class="emoji">${goal.emoji}</span>
+                        ${goal.name}
+                        <span class="check">✓</span>
+                    </button>
+                `;
+            }).join('')}
+        </div>
 
-            <button class="action-btn" id="create-btn" onclick="app.saveGoalsAndContinue()" 
-                    ${this.selectedGoals.length === 0 ? 'disabled' : ''}>
-                Выбрать
-            </button>
-        `;
+        <button class="action-btn" id="create-btn" onclick="app.saveGoalsAndContinue()" 
+                ${this.selectedGoals.length === 0 ? 'disabled' : ''}>
+            Выбрать
+        </button>
+    `;
+    document.getElementById('app').innerHTML = html;
+},
 
-        document.getElementById('app').innerHTML = html;
-    },
 
     toggleGoal(goalId) {
-        const index = this.selectedGoals.indexOf(goalId);
-        if (index > -1) this.selectedGoals.splice(index, 1);
-        else if (this.selectedGoals.length < 3) this.selectedGoals.push(goalId);
-        this.updateCounter();
-    },
+    const idx = this.selectedGoals.indexOf(goalId);
+    if (idx > -1) this.selectedGoals.splice(idx, 1);
+    else if (this.selectedGoals.length < 3) this.selectedGoals.push(goalId);
+    this.updateCounter();
+},
 
     updateCounter() {
-        const counter = document.getElementById('counter');
-        const createBtn = document.getElementById('create-btn');
-        if (counter) counter.textContent = `Выбрано: ${this.selectedGoals.length}/3`;
-        if (createBtn) createBtn.disabled = this.selectedGoals.length === 0;
-    },
+    const counter = document.getElementById('counter');
+    const createBtn = document.getElementById('create-btn');
+    if (counter) counter.textContent = `Выбрано: ${this.selectedGoals.length}/3`;
+    if (createBtn) createBtn.disabled = this.selectedGoals.length === 0;
+},
 
-    saveGoalsAndContinue() {
-        localStorage.setItem('selectedGoals', JSON.stringify(this.selectedGoals));
-        this.navigateReplace('showFullLibrary');
-    },
+saveGoalsAndContinue() {
+    localStorage.setItem('selectedGoals', JSON.stringify(this.selectedGoals));
+
+    // сразу подхватываем новое значение
+    this.selectedGoals = JSON.parse(localStorage.getItem('selectedGoals'));
+
+    // перенаправляем на библиотеку
+    this.navigateReplace('showFullLibrary');
+},
+
+
 
     showRouteReady() {
         this.currentScreen = 'route-ready';
@@ -394,6 +498,17 @@ const app = {
     },
 
     showCategory(categoryId) {
+    if (categoryId === "personal") {
+    const allSections = this.content.personal.subsections || [];
+    const filtered = allSections.filter(sec => {
+        const baseId = sec.id.replace(/_\d+$/, ''); // discipline_1 -> discipline
+        return this.selectedGoals.includes(baseId);
+    });
+    // Если нужно, переиспользуй filtered вместо categoryContent.subsections
+    // Ниже рендерим filtered
+    // ...
+}
+
     console.log('showCategory', categoryId);
 
     const category = this.categories.find(c => c.id === categoryId);
