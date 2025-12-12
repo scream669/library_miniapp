@@ -1163,8 +1163,17 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
 button, .goal-btn, .menu-btn, .article-link, .miro-map-btn {
-    touch-action: manipulation; /* кнопки теперь реагируют на тап */
-    -webkit-tap-highlight-color: transparent; /* убирает синюю подсветку на tap */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+.settings-overlay,
+.image-viewer-overlay {
+    pointer-events: auto; /* чтобы overlay реагировал только если видим */
+}
+
+body:not(.overlay-open) .settings-overlay,
+body:not(.overlay-open) .image-viewer-overlay {
+    display: none;
 }
 
     </style>
@@ -1189,6 +1198,31 @@ button, .goal-btn, .menu-btn, .article-link, .miro-map-btn {
         });
     });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Открытие меню настроек
+    const menuBtn = document.querySelector('.menu-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const imageCloseBtn = document.querySelector('.image-close-btn');
 
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            document.body.classList.add('overlay-open');
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            document.body.classList.remove('overlay-open');
+        });
+    }
+
+    if (imageCloseBtn) {
+        imageCloseBtn.addEventListener('click', () => {
+            document.body.classList.remove('overlay-open');
+        });
+    }
+});
+</script>
 </body>
 </html>
