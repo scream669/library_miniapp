@@ -517,6 +517,27 @@ personal: {
     <p style="margin: 0 0 18px 0; line-height: 1.7;"><strong>Я проснулся сегодня без мелких/горящих задач – все уже решено вчера.</strong></p>
     
     <p style="margin: 0 0 25px 0; line-height: 1.7;"><strong>Я заряжен и готов к новому рывку.</strong></p>
+    <div style="text-align: center; margin-bottom: 25px;">
+        <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/vianegativa_1.jpg?raw=true"
+             onclick="app.openImage('https://github.com/scream669/radgilmanov_app/blob/main/pictures/vianegativa_1.jpg?raw=true')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 25px;">
+        <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/vianegativa_2.jpg?raw=true"
+             onclick="app.openImage('https://github.com/scream669/radgilmanov_app/blob/main/pictures/vianegativa_2.jpg?raw=true')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 25px;">
+        <img src="https://github.com/scream669/radgilmanov_app/blob/main/pictures/vianegativa_3.jpg?raw=true"
+             onclick="app.openImage('https://github.com/scream669/radgilmanov_app/blob/main/pictures/vianegativa_3.jpg?raw=true')"
+             style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;">
+        <div style="margin-top: 8px; color: #8e8e93; font-size: 14px;">Нажмите для увеличения</div>
+    </div>
+
 </div>` },
                             { id: 'vianegativa_2', title: "РАДкаст №22", content: `<div class="article-source">
     <strong>📚 Ссылка на библиотеку с подкастом:</strong> <a href="https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84MzM4MDQ1YTQ2OTkxMzEzL0V1Nk0xOF9wWWIxUG8ycU92MTQ0TVdzQm5uSXZHcXFJSmtiemJXbklGck5VVFE%5FZT1uZ2R0Y1g&id=8338045A46991313%21scfd78cee61e94fbda36a8ebf5e38316b&cid=8338045A46991313" target="_blank">Открыть</a>
